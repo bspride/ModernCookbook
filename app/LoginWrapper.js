@@ -47,13 +47,13 @@ var LoginWrapper = React.createClass({
 						<button type='button' id='login' onClick={this.submit}>
 							{'Login'}
 						</button>
-						<div>
-							or 
-							<button id='signup' onClick={this.submit}>
-								{'Sign up'}
-							</button>
-						</div>
 					</form>
+					<div>
+						or 
+						<button id='signup' onClick={this.submit}>
+							{'Sign up'}
+						</button>
+					</div>
 				</div>
 		);
 	},
