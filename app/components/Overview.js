@@ -1,4 +1,5 @@
 var React = require('react');
+var RecipeList = require('./RecipeList');
 
 var Overview = new React.createClass({		
 	render: function() {
