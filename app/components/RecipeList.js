@@ -1,31 +1,41 @@
 var React = require('react');
 var Parse = require('parse');
-var ParseReact = require('parse-react');
+var RecipeStore = require('../stores/RecipeStore');
+var RecipeItem = require('./RecipeItem');
 
 var RecipeList = new React.createClass({
-	mixins: [ParseReact.Mixin],
 	
-	observe: function() {
+	getInitialState: function() {
 		return {
-			recipes: (new Parse.Query('Recipe')).equalTo("createdBy", Parse.User.current().id)
+			ownedRecipes: null
 		};
+	},	
+	componentDidMount: function() {
+		RecipeStore.getOwned(Parse.User.current().id, this._getOwnedRecipes);
 	},
 	
 	render: function() {
-		var content;
-		if (this.pendingQueries().length) {
-			content = "Loading";
+		var ownedRecipes = this.state.ownedRecipes;
+		var recipes = [];
+		if (!ownedRecipes) {
+			recipes.push(<div>Loading</div>);
 		} else {
-			debugger;
-			content = "Loaded";
+			if (ownedRecipes.length == 0) {
+				recipes.push(<div>No recipes</div>);
+			}
+			for (var key in ownedRecipes) {
+				recipes.push(<RecipeItem recipe={ownedRecipes[key]} />);
+			}
 		}
 		return (
 			<div>
-				{content}
+				{recipes}
 			</div>
 		);
-	}
-	
+	},
+	_getOwnedRecipes: function(recipes) {
+		this.setState({ownedRecipes:recipes});
+	}	
 });
 
 module.exports = RecipeList;
