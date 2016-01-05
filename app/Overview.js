@@ -1,31 +1,20 @@
 var React = require('react');
-var Parse = require('parse').Parse;
-var ParseReact = require('parse-react');
 
-var Overview = new React.createClass({
-	mixins: [ParseReact.Mixin],
-	
-	observe: function() {
-		return {
-			recipes: (new Parse.Query('Recipe')).equalTo("createdBy", Parse.User.current().id),
-			user: ParseReact.currentUser
-		};
-	},
-	
+var Overview = new React.createClass({		
 	render: function() {
-			var content;
-			if (this.pendingQueries().length) {
-				content = "Loading";
-			} else {
-				debugger;
-				content = "Loaded";
-			}
 			return (
 				<div>
-					{content}
+					<RecipeList />
 				</div>
 			);
-	}
+	},
+	renderRecipe(recipes) {
+		return (
+			<div>
+				<RecipeList />
+			</div>
+		);
+	} 
 });
 
 module.exports = Overview;
