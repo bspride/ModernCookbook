@@ -2,7 +2,7 @@ var React = require('react');
 var Parse = require('parse');
 var ReactDOM = require('react-dom');
 var LoginWrapper = require('./components/LoginWrapper');
-var ParseConfig = require('./stores/ParseConfig.json');
+var ParseConfig = require('json!./stores/ParseConfig.json');
 require('./styles/main.css');
 
 var app = document.createElement('div');
