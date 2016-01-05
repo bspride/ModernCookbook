@@ -7,7 +7,7 @@ var Overview = new React.createClass({
 	
 	observe: function() {
 		return {
-			recipes: (new Parse.Query('Recipe')),
+			recipes: (new Parse.Query('Recipe')).equalTo("createdBy", Parse.User.current().id),
 			user: ParseReact.currentUser
 		};
 	},
@@ -17,6 +17,7 @@ var Overview = new React.createClass({
 			if (this.pendingQueries().length) {
 				content = "Loading";
 			} else {
+				debugger;
 				content = "Loaded";
 			}
 			return (
