@@ -24,7 +24,7 @@ var RecipeList = new React.createClass({
 				recipes.push(<div>No recipes</div>);
 			}
 			for (var key in ownedRecipes) {
-				recipes.push(<RecipeItem recipe={ownedRecipes[key]} />);
+				recipes.push(<RecipeItem key={ownedRecipes[key].id} recipe={ownedRecipes[key]} />);
 			}
 		}
 		return (
