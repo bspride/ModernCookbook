@@ -1,8 +1,8 @@
 var React = require('react');
 var Parse = require('parse');
 var ReactDOM = require('react-dom');
-var LoginWrapper = require('./LoginWrapper');
-require('./main.css');
+var LoginWrapper = require('./components/LoginWrapper');
+require('./styles/main.css');
 
 var app = document.createElement('div');
 app.setAttribute('id', 'app');
