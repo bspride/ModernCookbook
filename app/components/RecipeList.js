@@ -12,20 +12,18 @@ var RecipeList = new React.createClass({
 	},
 	
 	render: function() {
-		render: function() {
-			var content;
-			if (this.pendingQueries().length) {
-				content = "Loading";
-			} else {
-				debugger;
-				content = "Loaded";
-			}
-			return (
-				<div>
-					{content}
-				</div>
-			);
+		var content;
+		if (this.pendingQueries().length) {
+			content = "Loading";
+		} else {
+			debugger;
+			content = "Loaded";
 		}
+		return (
+			<div>
+				{content}
+			</div>
+		);
 	}
 	
 });
