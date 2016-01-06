@@ -1,4 +1,5 @@
 import BaseStore from './BaseStore';
+import Parse from 'parse';
 
 class LoginStore extends BaseStore {
 	constructor() {
@@ -20,7 +21,7 @@ class LoginStore extends BaseStore {
 	}
 	
 	isLoggedIn() {
-		return false;
+		return !!Parse.User.current();
 	}
 }
 

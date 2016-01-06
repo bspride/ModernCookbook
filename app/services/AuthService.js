@@ -1,10 +1,11 @@
 import when from 'when';
+import Parse from 'parse';
 import LoginActions from '../actions/LoginActions';
 
 class AuthService {
 	login(username, password) {
 		return this.handleAuth(when(
-			//call Parse
+			Parse.User.logIn(username, password)
 		));
 	}
 	
@@ -21,7 +22,7 @@ class AuthService {
 	handleAuth(loginPromise) {
 		return loginPromise
 			.then(function(response) {
-				LoginActions.loginUser();
+				LoginActions.loginUser(Parse.User.current());
 				return true;
 			});
 	}
