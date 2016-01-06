@@ -18,6 +18,10 @@ class LoginStore extends BaseStore {
 				break;
 		};
 	}
+	
+	isLoggedIn() {
+		return false;
+	}
 }
 
 export default new LoginStore();

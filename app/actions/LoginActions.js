@@ -1,5 +1,5 @@
 import AppDispatcher from '../dispatchers/appDispatcher';
-import RouterContainer from '../services/RouterContainer';
+import {browserHistory} from 'react-router'
 
 export default {
 	loginUser: () => {
@@ -7,10 +7,10 @@ export default {
 			actionType: 'LOGIN_USER'
 		});
 		
-		RouterContainer.get().transitionTo('/');
+		browserHistory.push('/');
 	},
 	logoutUser: () => {
-		RouterContainer.get().transitionTo('/login');
+		browserHistory.push('/login');
 		AppDispatcher.dispatch({
 			actionType: 'LOGOUT_USER'
 		});

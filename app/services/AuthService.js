@@ -12,7 +12,7 @@ class AuthService {
 		LoginActions.logoutUser();
 	}
 	
-	signup(username, password, extra) {
+	signup(username, password) {
 		return this.handleAuth(when(
 			//call Parse
 		));

@@ -5,7 +5,7 @@ var RecipeItem = React.createClass({
 		var recipe = this.props.recipe;
 		return (
 			<div>
-			{recipe.get('Name')}
+				{recipe.get('Name')}
 			</div>
 		);
 	}
