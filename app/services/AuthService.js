@@ -15,7 +15,7 @@ class AuthService {
 	
 	signup(username, password) {
 		return this.handleAuth(when(
-			//call Parse
+			Parse.User.signUp(username, password, null, null)			
 		));
 	}
 	
