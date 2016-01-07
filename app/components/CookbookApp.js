@@ -57,6 +57,7 @@ export default class CookbookApp extends React.Component {
 			return (
 				<div>
 					<Link to="home">Home</Link>
+                    <Link to="create">Create Recipe</Link>
 					<a href="" onClick={this.logout}>Logout</a>
 				</div>
 			)			

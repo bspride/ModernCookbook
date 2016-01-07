@@ -8,6 +8,7 @@ import CookbookApp from './components/CookbookApp'
 import Signup from './components/Signup';
 import Home from './components/Home';
 import Index from './components/Index';
+import Create from './components/RecipeCreate';
 
 import ParseConfig from 'json!./stores/ParseConfig.json';
 
@@ -27,6 +28,7 @@ ReactDOM.render((
 			<Route path="login" component={Login} />
 			<Route path="signup" component={Signup} />
 			<Route path="home" path="/home" component={Home} />
+            <Route path="create" path="/create" component={Create} />
 		</Route>
 	</Router>
 ), document.getElementById('app'));	
