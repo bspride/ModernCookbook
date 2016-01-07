@@ -27,18 +27,8 @@ ReactDOM.render((
 			<IndexRoute component={Index} />
 			<Route path="login" component={Login} />
 			<Route path="signup" component={Signup} />
-			<Route path="home" path="/home" component={Home} />
-            <Route path="create" path="/create" component={Create} />
+			<Route path="home" component={Home} />
+      <Route path="create" component={Create} />
 		</Route>
 	</Router>
 ), document.getElementById('app'));	
-
-//ReactDOM.render((
-//	<Router history={browserHistory}>
-//		<Route path="/" component={App}>
-//			<Route path="login" component={Login} />
-//			<Route path="logout" component={Logout} />
-//			<Route path="dashboard" component="Dashboard" onEnter={requireAuth} />
-//		</Route>
-//	</Router>
-//), document.getElementById('app'));
