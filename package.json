@@ -42,6 +42,8 @@
     "react-dom": "^0.14.5",
     "react-mixin": "^3.0.3",
     "react-router": "^2.0.0-rc4",
+    "redux-router": "^0.1.0",
+    "redux-thunk": "^1.0.3",
     "when": "^3.7.7"
   }
 }

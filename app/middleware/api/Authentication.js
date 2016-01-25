@@ -1,16 +1,24 @@
 import when from 'when';
 import Parse from 'parse';
-import LoginActions from '../actions/LoginActions';
+
+import { success, userLogout } from '../../actions/LoginActions';
 
 class AuthService {
 	login(username, password) {
 		return this.handleAuth(when(
-			Parse.User.logIn(username, password)
+			Parse.User.logIn(username, password, {
+                success: function (user) {
+                    success(user)
+                },
+                error: function (user, error) {
+                    console.log(error)
+                }
+            })
 		));
 	}
 	
-	logout() {
-		LoginActions.logoutUser();
+	logout(user) {
+		Parse.User.logOut()
 	}
 	
 	signup(username, password) {
@@ -22,7 +30,6 @@ class AuthService {
 	handleAuth(loginPromise) {
 		return loginPromise
 			.then(function(response) {
-				LoginActions.loginUser(Parse.User.current());
 				return true;
 			});
 	}
