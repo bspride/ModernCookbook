@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactMixin from 'react-mixin';
 
-class IngredientList extends React.Component {
+class IngredientList extends Component {
     render() {
         let createIngredient = (ingredient) => {
             return (
@@ -19,44 +19,33 @@ class IngredientList extends React.Component {
     }
 }
 
-export default class Ingredients extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            amount: '',
-            name: '',
-            ingredients: []
-        }; 
-    }
-    
-    addIngredient() {
-        let newIngredients = this.state.ingredients.concat({
-            id: Date.now(),
-            amount: this.state.amount,
-            name: this.state.name
-        });
-        
-        this.setState({
-            amount: '',
-            name: '',
-            ingredients: newIngredients
+export default class Ingredients extends Component {
+    handleClick (e) {
+        this.props.add({
+            amount: this.refs.amount.value,
+            name: this.refs.name.value
         });
     }
     
     render() {
+        const { mIngredients } = this.props;
+        
         return (
             <div>
                 <h3>Ingredients</h3>
-                <input type="text" valueLink={this.linkState('amount')} placeholder="Amount" />
-                <input type="text" valueLink={this.linkState('name')} placeholder="Name" />
-                <a href="#" onClick={this.addIngredient.bind(this)}>Add Ingredient</a>
+                <input type="text" ref="amount" placeholder="Amount" />
+                <input type="text" ref="name" placeholder="Name" />
+                <a href="#" onClick={ this.handleClick.bind(this) }>Add Ingredient</a>
                 <div className="subMenu">
                     Amount | Name
                 </div>
-                <IngredientList ingredients={this.state.ingredients} />
+                <IngredientList ingredients={ mIngredients } />
             </div>
         );
     }
 }
 
-ReactMixin(Ingredients.prototype, React.addons.LinkedStateMixin);
+Ingredients.propTypes = {
+    mIngredients: PropTypes.array.isRequired,
+    add: PropTypes.func.isRequired
+}

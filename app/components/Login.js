@@ -1,40 +1,40 @@
-import React from 'react/addons';
+import React, { Component } from 'react';
 import ReactMixin from 'react-mixin';
-import Auth from '../services/AuthService'
+import { connect } from 'react-redux';
 
-export default class Login extends React.Component {
-	
-	constructor() {
-		super()
-		this.state = {
-			user: '',
-			password: ''
-		}
+import { loginRequest } from '../actions/LoginActions';
+
+class Login extends Component {
+	constructor(props) {
+		super(props)
+        this.login = this.login.bind(this)
 	}
 	
 	login(e) {
 		e.preventDefault();
-		Auth.login(this.state.user, this.state.password)
-			.catch(function(err) {
-				console.log("Error logging in", err);
-			});
+        
+        const { dispatch } = this.props
+        
+        dispatch(
+            loginRequest(this.refs.username.value, this.refs.password.value)    
+        )
 	}
 	
 	render() {
 		return (
 			<div>
-					<form role="form">
-						<label htmlFor='username'>Username</label>
-						<input ref='username' id='username' type='text' valueLink={this.linkState('user')} />
-						<label htmlFor='password'>Password</label>
-						<input ref='password' id='password' type='password' valueLink={this.linkState('password')} />
-						<button type='button' id='login' onClick={this.login.bind(this)}>
-							Submit
-						</button>
-					</form>
-				</div>
+                <form role="form">
+                    <label htmlFor='username'>Username</label>
+                    <input ref='username' id='username' type='text' />
+                    <label htmlFor='password'>Password</label>
+                    <input ref='password' id='password' type='password' />
+                    <button type='button' id='login' onClick={ this.login }>
+                        Submit
+                    </button>
+                </form>
+            </div>
 		);
 	}
 }
 
-ReactMixin(Login.prototype, React.addons.LinkedStateMixin);
+export default connect()(Login)

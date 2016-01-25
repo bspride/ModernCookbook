@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReactMixin from 'react-mixin';
 
-class StepsList extends React.Component {
+class StepsList extends Component {
     render() {
         let createStep = (step) => {
             return (
@@ -19,38 +19,28 @@ class StepsList extends React.Component {
     }
 }
 
-export default class Steps extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            text: '',
-            steps: []
-        }; 
-    }
-    
-    addStep() {
-        let newSteps = this.state.steps.concat({
-            id: Date.now(),
-            text: this.state.text,
-            num: this.state.steps.length + 1
-        });
-        
-        this.setState({
-            text: '',
-            steps: newSteps
-        });
+export default class Steps extends Component {
+    handleClick(e) {
+        this.props.add({
+            text: this.refs.step.value
+        })
     }
     
     render() {
+        const { mSteps } = this.props
+        
         return (
             <div>
                 <h3>Steps</h3>
-                <textArea col="50" row="5" valueLink={this.linkState('text')} />
-                <a href="#" onClick={this.addStep.bind(this)}>Add Step</a>
-                <StepsList steps={this.state.steps} />
+                <textArea col="50" row="5" ref="step" />
+                <a href="#" onClick={ this.handleClick.bind(this) }>Add Step</a>
+                <StepsList steps={ mSteps } />
             </div>
         );
     }
 }
 
-ReactMixin(Steps.prototype, React.addons.LinkedStateMixin);
+Steps.propTypes = {
+    mSteps: PropTypes.array.isRequired,
+    add: PropTypes.func.isRequired
+}
