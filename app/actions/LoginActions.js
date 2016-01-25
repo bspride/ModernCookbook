@@ -5,8 +5,7 @@
 
 import { browserHistory } from 'react-router';
 import Parse from 'parse';
-<<<<<<< HEAD
-=======
+
 import AuthService from '../middleware/api/Authentication';
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
