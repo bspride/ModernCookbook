@@ -1,8 +1,7 @@
-import React from 'react';
-import LoginStore from '../stores/LoginStore';
+import { Component } from 'react';
 
-export default (ComposedComponent) => {
-	return class AuthenticatedComponent extends React.Component {
+function Auth (ComposedComponent) {
+	return class AuthenticatedComponent extends Component {
 		static willTransistionTo(transition) {
 			if (!LoginStore.isLoggedIn()) {
 				transition.redirect('/login', {}, {'nextPath': transition.path});
@@ -41,4 +40,4 @@ export default (ComposedComponent) => {
 			);
 		}
 	}
-};
+}

@@ -14,6 +14,8 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 
 export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
 
+export const SIGNUP_USER = "SIGNUP_USER";
+
 function requestLogin (username) {
     return {
         type: LOGIN_REQUEST,
@@ -38,6 +40,14 @@ function logoutUser (username) {
     }
 }
 
+function signupUser (username) {
+    return {
+        type: SIGNUP_USER,
+        username,
+        isLoggedIn: true
+    }
+}
+
 export function loginRequest (username, password) {
     AuthService.login(username, password)
     
@@ -55,4 +65,10 @@ export function userLogout () {
     
     return logoutUser(username)
 }
->>>>>>> redux
+
+export function signup (username, password) {
+    AuthService.signup (username, password)
+    browserHistory.push('/home')
+    
+    return signupUser(username)
+}

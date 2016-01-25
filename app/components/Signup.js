@@ -1,22 +1,24 @@
-import React from 'react/addons';
-import ReactMixin from 'react-mixin';
-import Auth from '../services/AuthService'
+import { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class Signup extends React.Component {
+import { signup } from '../actions/LoginActions';
+
+class Signup extends Component {
 	constructor() {
-		super()
-		this.state = {
-			username: '',
-			password: ''
-		};
+		super(props)
+		this.signup = this.signup.bind (this)
 	}
 	
 	signup(e) {
 		e.preventDefault();
-		Auth.signup(this.state.username, this.state.password)
-			.catch(function(err) {
-				console.log("error logging in", err);
-			});
+        const { dispatch } = this.props
+        
+        let username = this.refs.username
+        let password = this.refs.password
+        
+        dispatch (
+            signup (username, password)
+        )
 	}
 	
 	render() {
@@ -24,14 +26,14 @@ export default class Signup extends React.Component {
 			<div>
 				<form>
 					<label htmlFor="username">Username</label>
-					<input type="text" valueLink={this.linkState('username')} id="username" />
+					<input type="text" ref="username" id="username" />
 					<label htmlFor="password">Password</label>
-					<input type="password" valueLink={this.linkState('password')} id="password" />
-					<button type="submit" onClick={this.signup.bind(this)}>Submit</button>
+					<input type="password" ref="password" id="password" />
+					<button type="submit" onClick={ this.signup }>Submit</button>
 				</form>
 			</div>
 		);
 	}
 }
 
-ReactMixin(Signup.prototype, React.addons.LinkedStateMixin);
+export default connect ()(Signup)

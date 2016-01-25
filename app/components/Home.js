@@ -1,10 +1,12 @@
-import React from 'react';
-import AuthenticatedComponent from './AuthenticatedComponent'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default AuthenticatedComponent(class Home extends React.Component {
+export default class Home extends Component {
 	render() {
 		return (
-			<div> Logged in Home </div>
+			<div>
+                Logged in Home
+            </div>
 		);
 	}
-})
+}
