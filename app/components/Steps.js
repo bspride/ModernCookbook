@@ -1,3 +1,9 @@
+/**
+ * Steps
+ * Component for rendiner and updating
+ * steps for a recipe
+ */
+
 import React, { Component, PropTypes } from 'react';
 import ReactMixin from 'react-mixin';
 

@@ -1,3 +1,9 @@
+/**
+ * Login
+ * Login component for updating login
+ * state and logging in.
+ */
+
 import React, { Component } from 'react';
 import ReactMixin from 'react-mixin';
 import { connect } from 'react-redux';

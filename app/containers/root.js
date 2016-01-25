@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, browserHistory, Route, IndexRoute } from 'react-router';
 
 import Login from '../components/Login';
-import CookbookApp from '../components/CookbookApp'
+import CookbookApp from './Cookbook/CookbookApp';
 import Signup from '../components/Signup';
 import Home from '../components/Home';
 import Index from '../components/Index';

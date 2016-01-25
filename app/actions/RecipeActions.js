@@ -1,5 +1,6 @@
 /**
- * Action Types
+ * RecipeActions
+ * Actions for creating a new recipe
  */
 export const ADD_INGREDIENT = "ADD_INGREDIENT";
 export const ADD_STEP = "ADD_STEP";

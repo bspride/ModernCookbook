@@ -1,3 +1,9 @@
+/**
+ * Ingredients
+ * Component for rendering ingredients and 
+ * adding ingredients to a recipe
+ */
+
 import React, { Component, PropTypes } from 'react';
 import ReactMixin from 'react-mixin';
 

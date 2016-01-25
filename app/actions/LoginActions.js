@@ -1,3 +1,8 @@
+/**
+ * LoginActions
+ * Actions for helping with login
+ */
+
 import { browserHistory } from 'react-router';
 import Parse from 'parse';
 import AuthService from '../middleware/api/Authentication';

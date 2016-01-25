@@ -1,5 +1,6 @@
 import when from 'when';
 import Parse from 'parse';
+
 import { success, userLogout } from '../../actions/LoginActions';
 
 class AuthService {

@@ -6,9 +6,10 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import { loadIngredient, loadStep } from '../../actions/RecipeActions';
-import Ingredients from '../../components/Cookbook/Recipes/Ingredients';
-import Steps from '../../components/Cookbook/Recipes/Steps';
+import Ingredients from '../../components/Ingredients';
+import Steps from '../../components/Steps';
 
 class Create extends Component {
     constructor (props) {
@@ -31,7 +32,7 @@ class Create extends Component {
         )
     }
     
-    render() {
+    render () {
         const { ingredients, steps } = this.props;
         
         return (
