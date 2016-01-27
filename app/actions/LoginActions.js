@@ -61,6 +61,7 @@ export function success (username) {
 
 export function userLogout () {
     let username = Parse.User.current()
+		AuthService.logout()
     browserHistory.push('/login')
     
     return logoutUser(username)
