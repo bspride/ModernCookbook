@@ -7,7 +7,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { loadIngredient, loadStep } from '../../actions/RecipeActions';
+import { loadIngredient, loadStep, saveRecipe } from '../../actions/RecipeActions';
 import Ingredients from '../../components/Ingredients';
 import Steps from '../../components/Steps';
 
@@ -16,6 +16,7 @@ class Create extends Component {
         super(props)
         this.addIngredient = this.addIngredient.bind(this)
         this.addStep = this.addStep.bind(this)
+        this.createRecipe = this.createRecipe.bind(this)
     }
     
     addIngredient (ingredient) {
@@ -32,22 +33,31 @@ class Create extends Component {
         )
     }
     
+    createRecipe (e) {
+        e.preventDefault();
+        const { dispatch } = this.props;
+        let overview = this.refs.overview.value;
+        
+        dispatch (
+            saveRecipe(overview)
+        )
+    }
+    
     render () {
         const { ingredients, steps } = this.props;
         
         return (
             <div className="recipe-create">
                 <h2>Create Recipe</h2>
-                <form>
-                    <h3>Overview</h3>
-                    <textArea col="50" row="5" ref="overview" />
-                    <Ingredients 
-                        add={ this.addIngredient }
-                        mIngredients={ ingredients } />
-                    <Steps
-                        add={ this.addStep }
-                        mSteps={ steps } />
-                </form>
+                <h3>Overview</h3>
+                <textArea col="50" row="5" ref="overview" />
+                <Ingredients 
+                    add={ this.addIngredient }
+                    mIngredients={ ingredients } />
+                <Steps
+                    add={ this.addStep }
+                    mSteps={ steps } />
+                <button onClick={ this.createRecipe }>Create</button>
             </div>    
         );
     }

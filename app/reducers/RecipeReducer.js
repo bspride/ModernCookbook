@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { ADD_INGREDIENT, ADD_STEP } from '../actions/RecipeActions';
+import { ADD_INGREDIENT, ADD_STEP, SAVE_RECIPE } from '../actions/RecipeActions';
 import { loadIngredient, loadStep } from '../actions/RecipeActions';
 
 // Reducer specific to ingredients
@@ -27,9 +27,19 @@ function steps (state = [], action) {
     }
 }
 
+function createRecipe (state = {}, action) {
+    switch (action.type) {
+        case SAVE_RECIPE:
+            return action;
+        default:
+            return state;
+    }
+}
+
 const recipeApp = combineReducers({
     ingredients,
-    steps
+    steps,
+    createRecipe
 })
 
 export default recipeApp
