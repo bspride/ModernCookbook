@@ -71,8 +71,8 @@ Create.propTypes = {
 
 function mapStateToProps (state) {
     return { 
-        ingredients: state.recipeApp.ingredients,
-        steps: state.recipeApp.steps 
+        ingredients: state.recipeApp.creation.ingredients,
+        steps: state.recipeApp.creation.steps 
     }
 }
 

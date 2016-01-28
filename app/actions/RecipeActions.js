@@ -39,8 +39,8 @@ function saveNewRecipe (recipe, didSave) {
     return {
         id: recipeId,
         type: SAVE_RECIPE,
-        ingredients: recipe.ingredients,
-        steps: recipe.steps,
+        ingredients: [],
+        steps: [],
         saveSuccessful: didSave
     }
 }
@@ -55,7 +55,7 @@ export function loadStep (step) {
 
 export function saveRecipe (overview) {
     return (dispatch, getState) => {
-        let state = getState().recipeApp;
+        let state = getState().recipeApp.creation;
         let ingredients = state.ingredients;
         let steps = state.steps;
         
@@ -68,10 +68,10 @@ export function saveRecipe (overview) {
             .then(function(result, didSave){
                 browserHistory.push('/home')
                 
-                return saveNewRecipe(result, didSave);
+                return dispatch(saveNewRecipe(result, didSave));
             })
             .catch(function(result, didSave) {
-                return saveNewRecipe(result, didSave)
+                return dispatch(saveNewRecipe(result, didSave));
             });    
     };
 }
