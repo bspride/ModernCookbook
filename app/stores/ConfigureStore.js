@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import createHistory from 'history/lib/createBrowserHistory'
 import thunk from 'redux-thunk'
 //import api from '../middleware/api'
 import rootReducer from '../reducers'
