@@ -5,16 +5,9 @@ import { success, userLogout } from '../../actions/LoginActions';
 
 class AuthService {
 	login(username, password) {
-		return this.handleAuth(when(
-			Parse.User.logIn(username, password, {
-                success: function (user) {
-                    success(user)
-                },
-                error: function (user, error) {
-                    console.log(error)
-                }
-            })
-		));
+		return this.handleAuth(
+			Parse.User.logIn(username, password)
+		);
 	}
 	
 	logout(user) {

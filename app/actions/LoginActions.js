@@ -3,8 +3,9 @@
  * Actions for helping with login
  */
 
-import { browserHistory } from 'react-router';
-import Parse from 'parse';
+import { browserHistory } from 'react-router'
+import when from 'when'
+import Parse from 'parse'
 
 import AuthService from '../middleware/api/Authentication';
 
@@ -16,26 +17,32 @@ export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
 
 export const SIGNUP_USER = "SIGNUP_USER";
 
-function requestLogin (username) {
+function requestLogin () {
     return {
         type: LOGIN_REQUEST,
-        username,
+				isFetching: true,
+        isLoggedIn: false
+    }
+}
+
+function loginSuccess () {
+    return {
+        type: LOGIN_SUCCESS,
+        isFetching: false,
         isLoggedIn: true
     }
 }
 
-function loginSuccess (username) {
-    return {
-        type: LOGIN_SUCCESS,
-        username,
-        isLoggedIn: true
-    }
+function loginFailure () {
+	return {
+		
+	}
 }
 
 function logoutUser (username) {
     return {
         type: LOGOUT_REQUEST,
-        username,
+        isFetching: false,
         isLoggedIn: false
     }
 }
@@ -48,15 +55,26 @@ function signupUser (username) {
     }
 }
 
-export function loginRequest (username, password) {
-    AuthService.login(username, password)
-    
-    return requestLogin(username)
+function success (username) {
+    browserHistory.push('/home')
 }
 
-export function success (username) {
-    browserHistory.push('/home')
-    return loginSuccess(username)
+function loginUser(username, password) {
+	return dispatch => {
+			dispatch(requestLogin())
+			AuthService.login(username, password).then(() => {
+				dispatch(loginSuccess())
+				success()
+			}, (error) => {
+				dispatch(loginFailure())
+			})
+		}
+}
+
+export function loginRequest (username, password) {
+    return (dispatch, getState) => {
+			return dispatch(loginUser(username, password))
+		}	
 }
 
 export function userLogout () {

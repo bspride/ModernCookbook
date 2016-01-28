@@ -3,15 +3,22 @@ import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_REQUEST } from '../actions/LoginAc
 import { loginRequest, success, userLogout } from '../actions/LoginActions';
 
 const initalState = {
+		isFetching: false,
     isLoggedIn: false
 }
 
 function login (state = initalState, action) {
     switch (action.type) {
         case LOGIN_REQUEST:
-            return action
+            return Object.assign({}, state, {
+							isFetching: action.isFetching,
+							isLoggedIn: action.isLoggedIn
+						})
         case LOGIN_SUCCESS:
-            return action
+            return Object.assign({}, state, {
+							isFetching: action.isFetching,
+							isLoggedIn: action.isLoggedIn
+						})
         case LOGOUT_REQUEST:
             return action
         default:
