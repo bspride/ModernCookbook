@@ -62,6 +62,7 @@ function loginUser(username, password) {
 	return dispatch => {
 			dispatch(requestLogin())
 			AuthService.login(username, password).then((value) => {
+				console.log(value)
 				dispatch(loginSuccess())
 				success()
 			}, (error) => {
@@ -70,10 +71,29 @@ function loginUser(username, password) {
 		}
 }
 
+function facebookLoginUser() {
+	return dispatch => {
+		dispatch(requestLogin())
+		AuthService.facebookLogin().then((value) => {
+			console.log(value)
+			dispatch(loginSuccess())
+			success()
+		}, (error) => {
+			dispatch(loginFailure())
+		})
+	}
+}
+
 export function loginRequest (username, password) {
     return (dispatch, getState) => {
 			return dispatch(loginUser(username, password))
 		}	
+}
+
+export function facebookLoginRequest() {
+	return (dispatch, getState) => {
+		return dispatch(facebookLoginUser())
+	}
 }
 
 export function userLogout () {
@@ -83,8 +103,12 @@ export function userLogout () {
     return logoutUser()
 }
 
-export function signup (username, password) {
-    AuthService.signup (username, password)
+export function signup (name, username, password) {
+    AuthService.signup (username, password).then((userData) => {
+			AuthService.setupUserProfile(userData.uid, name)
+		}, (error) => {
+			console.log(error)
+		})
     browserHistory.push('/home')
     
     return signupUser(username)

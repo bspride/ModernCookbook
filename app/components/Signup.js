@@ -1,23 +1,24 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { signup } from '../actions/LoginActions';
 
 class Signup extends Component {
-	constructor() {
+	constructor(props) {
 		super(props)
-		this.signup = this.signup.bind (this)
+		this.signup = this.signup.bind(this)
 	}
 	
 	signup(e) {
 		e.preventDefault();
-        const { dispatch } = this.props
-        
-        let username = this.refs.username
-        let password = this.refs.password
+        const { dispatch } = this.props;
+				
+        let username = this.refs.username.value
+        let password = this.refs.password.value
+				let name = this.refs.name.value
         
         dispatch (
-            signup (username, password)
+            signup (name, username, password)
         )
 	}
 	
@@ -25,6 +26,8 @@ class Signup extends Component {
 		return (
 			<div>
 				<form>
+					<label htmlFor="name">Name</label>
+					<input type="text" ref="name" id="name" />
 					<label htmlFor="username">Username</label>
 					<input type="text" ref="username" id="username" />
 					<label htmlFor="password">Password</label>

@@ -7,12 +7,14 @@ var fireRef = new Firebase(FirebaseConstants.FIREBASE);
 
 class AuthService {
 	login(username, password) {
-		return this.handleAuth(
-			fireRef.authWithPassword({
-				email: username,
-				password: password
-			})
-		);
+		return fireRef.authWithPassword({
+			email: username,
+			password: password
+		})
+	}
+	
+	facebookLogin() {
+		return fireRef.authWithOAuthPopup("facebook")
 	}
 	
 	logout(user) {
@@ -20,16 +22,16 @@ class AuthService {
 	}
 	
 	signup(username, password) {
-		return this.handleAuth(
-			fireRef.createUser({
-				email: username,
-				password: password
-			})
-		);
+		return fireRef.createUser({
+			email: username,
+			password: password
+		})
 	}
 	
-	handleAuth(loginPromise) {
-		return loginPromise
+	setupUserProfile(uid, name) {
+		return fireRef.child('users').child(uid).set({
+				"name": name
+		})
 	}
 }
 
