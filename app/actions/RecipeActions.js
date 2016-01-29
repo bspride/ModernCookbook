@@ -9,17 +9,14 @@ import RecipesApi from '../middleware/api/RecipesApi';
 export const ADD_INGREDIENT = "ADD_INGREDIENT";
 export const ADD_STEP = "ADD_STEP";
 
-export const SAVE_RECIPE = "SAVE_RECIPE";
+export const SAVE_RECIPE_REQUEST = "SAVE_RECIPE_REQUEST";
+export const SAVE_RECIPE_SUCCESS = "SAVE_RECIPE_SUCCESS";
+export const SAVE_RECIPE_FAIL = "SAVE_RECIPE_FAIL";
 
-let ingredientId = 0;
-let stepId = 0;
 let stepNum = 1;
-
-let recipeId = 0;
 
 function addIngredient (amount, name) {
     return {
-        id: ingredientId++,
         type: ADD_INGREDIENT,
         amount,
         name
@@ -28,21 +25,46 @@ function addIngredient (amount, name) {
 
 function addStep (step) {
     return {
-        id: stepId++,
         type: ADD_STEP,
         num: stepNum++,
         text: step
     }
 }
 
-function saveNewRecipe (recipe, didSave) {
+function saveRecipeRequest () {
     return {
-        id: recipeId,
-        type: SAVE_RECIPE,
+        type: SAVE_RECIPE_REQUEST,
+        isFetching: true,
+        saveSuccessful: false
+    }
+}
+
+function saveRecipeSuccess () {
+    stepNum = 1;
+    
+    return {
+        type: SAVE_RECIPE_SUCCESS,
         ingredients: [],
         steps: [],
-        saveSuccessful: didSave
+        isFetching: false,
+        saveSuccessful: true
     }
+}
+
+function saveRecipeFail () {
+    return {
+        type: SAVE_RECIPE_FAIL,
+        isFetching: false,
+        saveSuccessful: false
+    }
+}
+
+function success () {
+    browserHistory.push('/home')
+}
+
+function fail () {
+    
 }
 
 export function loadIngredient (amount, name) {
@@ -64,14 +86,16 @@ export function saveRecipe (overview) {
             steps: steps
         }
         
+        dispatch(saveRecipeRequest())
+        
         RecipesApi.saveRecipe(recipe)
-            .then(function(result, didSave){
-                browserHistory.push('/home')
-                
-                return dispatch(saveNewRecipe(result, didSave));
+            .then(() => {
+                dispatch(saveRecipeSuccess());
+                success()
             })
-            .catch(function(result, didSave) {
-                return dispatch(saveNewRecipe(result, didSave));
+            .catch((result, didSave) => {
+                dispatch(saveRecipeFail())
+                //fail()
             });    
     };
 }
