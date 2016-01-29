@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
-import { ADD_INGREDIENT, ADD_STEP, SAVE_RECIPE } from '../actions/RecipeActions';
+import { ADD_INGREDIENT, ADD_STEP, 
+        SAVE_RECIPE_REQUEST, SAVE_RECIPE_SUCCESS, 
+        SAVE_RECIPE_FAIL } from '../actions/RecipeActions';
 import { loadIngredient, loadStep } from '../actions/RecipeActions';
 
 const initialState = {
     ingredients: [],
     steps: [],
+    isFetching: false,
     saveSuccessful: false
 }
 
@@ -12,27 +15,38 @@ const initialState = {
 function creation (state = initialState, action) {
     switch (action.type) {
         case ADD_INGREDIENT:
-            let newIngredients = [...(state.ingredients), action];
-            return Object.assign(
-                {},
-                {
-                    ingredients: newIngredients,
-                    steps: state.steps,
-                    saveSuccessful: false
-                }
-            );
+            return Object.assign({}, state, {
+                        ingredients: [
+                            ...(state.ingredients), {
+                                amount: action.amount,
+                                name: action.name    
+                            }
+                        ]
+                    });
         case ADD_STEP:
-            let newSteps = [...(state.steps), action];
-            return Object.assign(
-                {},
-                {
-                    ingredients: state.ingredients,
-                    steps: newSteps,
-                    saveSuccessful: false
-                }
-            );
-        case SAVE_RECIPE:
-            return action;
+            return Object.assign({}, state, {
+                        steps: [
+                            ...(state.steps), {
+                                num: action.num,
+                                text: action.text  
+                            }
+                        ]
+                    });
+        case SAVE_RECIPE_REQUEST:
+            return Object.assign({}, state, {
+                        isFetching: action.isFetching,
+                        saveSuccessful: action.saveSuccessful
+                    });
+        case SAVE_RECIPE_SUCCESS:
+            return Object.assign({}, state, {
+                        isFetching: action.isFetching,
+                        saveSuccessful: action.saveSuccessful
+                    });
+        case SAVE_RECIPE_FAIL:
+            return Object.assign({}, state, {
+                        isFetching: action.isFetching,
+                        saveSuccessful: action.saveSuccessful
+                    });
         default:
             return state;
     }
