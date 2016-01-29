@@ -1,30 +1,35 @@
-import when from 'when';
-import Parse from 'parse';
+import when from 'when'
+import Firebase from 'firebase'
+import FirebaseConstants from '../../constants/FirebaseConstants'
 
-import { success, userLogout } from '../../actions/LoginActions';
+import { success, userLogout } from '../../actions/LoginActions'
+var fireRef = new Firebase(FirebaseConstants.FIREBASE);
 
 class AuthService {
 	login(username, password) {
 		return this.handleAuth(
-			Parse.User.logIn(username, password)
+			fireRef.authWithPassword({
+				email: username,
+				password: password
+			})
 		);
 	}
 	
 	logout(user) {
-		Parse.User.logOut()
+		fireRef.unauth()
 	}
 	
 	signup(username, password) {
-		return this.handleAuth(when(
-			Parse.User.signUp(username, password, null, null)			
-		));
+		return this.handleAuth(
+			fireRef.createUser({
+				email: username,
+				password: password
+			})
+		);
 	}
 	
 	handleAuth(loginPromise) {
 		return loginPromise
-			.then(function(response) {
-				return true;
-			});
 	}
 }
 

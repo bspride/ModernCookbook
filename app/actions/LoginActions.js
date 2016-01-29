@@ -5,7 +5,6 @@
 
 import { browserHistory } from 'react-router'
 import when from 'when'
-import Parse from 'parse'
 
 import AuthService from '../middleware/api/Authentication';
 
@@ -39,7 +38,7 @@ function loginFailure () {
 	}
 }
 
-function logoutUser (username) {
+function logoutUser () {
     return {
         type: LOGOUT_REQUEST,
         isFetching: false,
@@ -62,7 +61,7 @@ function success (username) {
 function loginUser(username, password) {
 	return dispatch => {
 			dispatch(requestLogin())
-			AuthService.login(username, password).then(() => {
+			AuthService.login(username, password).then((value) => {
 				dispatch(loginSuccess())
 				success()
 			}, (error) => {
@@ -78,11 +77,10 @@ export function loginRequest (username, password) {
 }
 
 export function userLogout () {
-    let username = Parse.User.current()
 		AuthService.logout()
     browserHistory.push('/login')
     
-    return logoutUser(username)
+    return logoutUser()
 }
 
 export function signup (username, password) {
