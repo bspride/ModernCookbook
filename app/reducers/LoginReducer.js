@@ -7,7 +7,7 @@ const initalState = {
     isLoggedIn: false
 }
 
-function login (state = initalState, action) {
+function auth (state = initalState, action) {
     switch (action.type) {
         case LOGIN_REQUEST:
             return Object.assign({}, state, {
@@ -26,8 +26,5 @@ function login (state = initalState, action) {
     }
 }
 
-const auth = combineReducers({
-    login
-})
 
 export default auth
