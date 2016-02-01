@@ -4,9 +4,8 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import Root from './containers/Root'
 import configureStore from './stores/ConfigureStore'
+import { browserHistory } from 'react-router'
 import Firebase from 'firebase'
-
-import ParseConfig from 'json!./stores/ParseConfig.json'
 
 require('./styles/main.css');
 
@@ -16,14 +15,15 @@ var app = document.createElement('div');
 app.setAttribute('id', 'app');
 document.body.appendChild(app);
 
+
 // Get store from ConfigureStore
-let store = configureStore();
+let store = configureStore(browserHistory);
 
 let rootElement = document.getElementById('app');
 
 render(
   <Provider store={store}>
-    <Root />
+    <Root history={browserHistory}/>
   </Provider>,
   rootElement
 )

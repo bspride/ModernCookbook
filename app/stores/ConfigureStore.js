@@ -1,14 +1,17 @@
 import { createStore, applyMiddleware, compose } from 'redux'
+import { syncHistory } from 'react-router-redux'
 import thunk from 'redux-thunk'
-//import api from '../middleware/api'
 import rootReducer from '../reducers'
-import DevTools from '../containers/DevTools';
+import DevTools from '../containers/DevTools'
 
-const finalCreateStore = compose(
-  applyMiddleware(thunk),
-	DevTools.instrument()
-)(createStore)
-
-export default function configureStore(initialState) {
-  return finalCreateStore(rootReducer, initialState)
+export default function configureStore(history) {
+	const routerMiddleware = syncHistory(history)
+	
+	let middleware = compose(applyMiddleware(thunk, routerMiddleware), DevTools.instrument())
+	
+	const store = middleware(createStore)(rootReducer, {})
+	
+	routerMiddleware.listenForReplays(store)
+	
+  return store
 }
