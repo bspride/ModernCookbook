@@ -26,8 +26,8 @@ function login (state = initalState, action) {
     }
 }
 
-const loginApp = combineReducers({
+const auth = combineReducers({
     login
 })
 
-export default loginApp
+export default auth

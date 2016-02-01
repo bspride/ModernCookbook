@@ -73,8 +73,8 @@ function createRecipe (state = {}, action) {
     }
 }
 
-const recipeApp = combineReducers({
+const newRecipe = combineReducers({
     creation
 })
 
-export default recipeApp
+export default newRecipe

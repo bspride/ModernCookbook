@@ -71,7 +71,7 @@ class CookbookApp extends Component {
 
 function mapStateToProps (state) {
     return {
-        isLoggedIn: state.loginApp.login.isLoggedIn
+        isLoggedIn: state.auth.login.isLoggedIn
     }
 }
 
