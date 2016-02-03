@@ -1,30 +1,21 @@
 import when from 'when';
-//import Parse from 'parse';
+import Firebase from 'firebase'
+import FirebaseConstants from '../../constants/FirebaseConstants'
+
+const fireRef = new Firebase(FirebaseConstants.FIREBASE);
 
 class RecipesApi {
     saveRecipe(recipe) {
-        const Recipe = "";//Parse.Object.extend("Recipe");
+        const recipeRef = fireRef.child('recipes')
         
-        let newRecipe = new Recipe();
-        let user = ""; //Parse.User.current();
+        let creator = fireRef.getAuth();
         
-        let savePromise = new Promise((resolve, reject) => {
-            let result = newRecipe.save({
-                    User: user,
-                    Overview: recipe.overview,
-                    Ingredients: { type: recipe.ingredients },
-                    Steps: recipe.steps
-                }, {
-                    success: (newRecipe) => {
-                        return resolve(newRecipe, true);
-                    },
-                    error: (newRecipe, error) => {
-                        return reject(newRecipe, false);
-                    }
-                })
-        })
-        
-        return savePromise;
+        return recipeRef.push().set({
+            creator: creator.uid,
+            title: recipe.title,
+            ingredients: recipe.ingredients,
+            steps: recipe.steps
+        });
     }
 }
 

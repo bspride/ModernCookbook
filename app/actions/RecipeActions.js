@@ -14,10 +14,13 @@ export const SAVE_RECIPE_SUCCESS = "SAVE_RECIPE_SUCCESS";
 export const SAVE_RECIPE_FAIL = "SAVE_RECIPE_FAIL";
 
 let stepNum = 1;
+let ingredientId = 0;
+let stepId = 0;
 
 function addIngredient (amount, name) {
     return {
         type: ADD_INGREDIENT,
+        id: ingredientId++,
         amount,
         name
     };
@@ -26,6 +29,7 @@ function addIngredient (amount, name) {
 function addStep (step) {
     return {
         type: ADD_STEP,
+        id: stepId++,
         num: stepNum++,
         text: step
     }
@@ -40,6 +44,8 @@ function saveRecipeRequest () {
 }
 
 function saveRecipeSuccess () {
+    ingredientId = 0;
+    stepId = 0;
     stepNum = 1;
     
     return {
@@ -75,13 +81,14 @@ export function loadStep (step) {
     return addStep(step);
 }
 
-export function saveRecipe (overview) {
+export function saveRecipe (title) {
     return (dispatch, getState) => {
-        let state = getState().recipeApp.creation;
+        let state = getState().newRecipe.creation;
         let ingredients = state.ingredients;
         let steps = state.steps;
         
         let recipe = {
+            title: title,
             ingredients: ingredients,
             steps: steps
         }

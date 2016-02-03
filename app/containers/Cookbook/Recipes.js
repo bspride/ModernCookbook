@@ -36,10 +36,10 @@ class Create extends Component {
     createRecipe (e) {
         e.preventDefault();
         const { dispatch } = this.props;
-        let overview = this.refs.overview.value;
+        let title = this.refs.title.value;
         
         dispatch (
-            saveRecipe(overview)
+            saveRecipe(title)
         )
     }
     
@@ -49,8 +49,8 @@ class Create extends Component {
         return (
             <div className="recipe-create">
                 <h2>Create Recipe</h2>
-                <h3>Overview</h3>
-                <textArea col="50" row="5" ref="overview" />
+                <h3>Title</h3>
+                <textArea col="50" row="5" ref="title" />
                 <Ingredients 
                     add={ this.addIngredient }
                     mIngredients={ ingredients } />

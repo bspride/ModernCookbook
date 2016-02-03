@@ -18,6 +18,7 @@ function creation (state = initialState, action) {
             return Object.assign({}, state, {
                         ingredients: [
                             ...(state.ingredients), {
+                                id: action.id,
                                 amount: action.amount,
                                 name: action.name    
                             }
@@ -27,6 +28,7 @@ function creation (state = initialState, action) {
             return Object.assign({}, state, {
                         steps: [
                             ...(state.steps), {
+                                id: action.id,
                                 num: action.num,
                                 text: action.text  
                             }
