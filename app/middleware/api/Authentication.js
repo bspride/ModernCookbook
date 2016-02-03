@@ -13,6 +13,10 @@ class AuthService {
 		})
 	}
 	
+	checkLogin() {
+		return fireRef.getAuth()
+	}
+	
 	facebookLogin() {
 		return fireRef.authWithOAuthPopup("facebook")
 	}

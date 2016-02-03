@@ -9,17 +9,17 @@ import Firebase from 'firebase'
 
 require('./styles/main.css');
 
-var myDataRef = new Firebase('https://sizzling-fire-4278.firebaseio.com/');
+var myDataRef = new Firebase('https://sizzling-fire-4278.firebaseio.com/')
 
-var app = document.createElement('div');
-app.setAttribute('id', 'app');
-document.body.appendChild(app);
+var app = document.createElement('div')
+app.setAttribute('id', 'app')
+document.body.appendChild(app)
 
 
 // Get store from ConfigureStore
-let store = configureStore(browserHistory);
+let store = configureStore(browserHistory)
 
-let rootElement = document.getElementById('app');
+let rootElement = document.getElementById('app')
 
 render(
   <Provider store={store}>

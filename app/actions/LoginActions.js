@@ -58,11 +58,20 @@ function success (username) {
     browserHistory.push('/home')
 }
 
+function checkLogin() {
+	return dispatch => {
+		var user = AuthService.checkLogin()
+		if (user != null) {				
+			dispatch(loginSuccess())
+			success()
+		}
+	}
+}
+
 function loginUser(username, password) {
 	return dispatch => {
 			dispatch(requestLogin())
 			AuthService.login(username, password).then((value) => {
-				console.log(value)
 				dispatch(loginSuccess())
 				success()
 			}, (error) => {
@@ -75,12 +84,17 @@ function facebookLoginUser() {
 	return dispatch => {
 		dispatch(requestLogin())
 		AuthService.facebookLogin().then((value) => {
-			console.log(value)
 			dispatch(loginSuccess())
 			success()
 		}, (error) => {
 			dispatch(loginFailure())
 		})
+	}
+}
+
+export function checkLoginRequest() {
+	return (dispatch, getState) => {
+		return dispatch(checkLogin())
 	}
 }
 

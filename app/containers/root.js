@@ -1,9 +1,18 @@
 import React from 'react'
 import { Router, Route} from 'react-router'
+import { connect } from 'react-redux'
+import { checkLoginRequest } from '../actions/LoginActions'
 import routes from '../routes'
 import DevTools from './DevTools'
 
-export default class Root extends React.Component {
+class Root extends React.Component {
+		
+		componentDidMount() {
+			const { dispatch } = this.props
+			dispatch(
+				checkLoginRequest()
+			)
+		}	
     render () {
         return (
 				 <div>
@@ -13,3 +22,5 @@ export default class Root extends React.Component {
         );
     }
 }
+
+export default  connect()(Root)
