@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route , IndexRoute} from 'react-router'
+
 import {requireAuth} from './components/AuthenticatedComponent'
 
 import Login from './components/Login'

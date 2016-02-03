@@ -23,7 +23,7 @@ export function requireAuth (ComposedComponent) {
 			return (
 				<div>
 					{this.props.isAuthenticated === true
-						? <Component {...this.props}/>
+						? <ComposedComponent {...this.props}/>
 						: null
 					}
 				</div>
