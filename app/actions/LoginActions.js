@@ -54,8 +54,9 @@ function signupUser (username) {
     }
 }
 
-function success (username) {
-    browserHistory.push('/home')
+function success (path = '/home') {
+		console.log(path)
+    browserHistory.push(path)
 }
 
 function checkLogin() {
@@ -68,24 +69,26 @@ function checkLogin() {
 	}
 }
 
-function loginUser(username, password) {
+function loginUser(username, password, redirect) {
 	return dispatch => {
 			dispatch(requestLogin())
 			AuthService.login(username, password).then((value) => {
+				console.log(value)
 				dispatch(loginSuccess())
-				success()
+				success(redirect)
 			}, (error) => {
+				console.log(error)
 				dispatch(loginFailure())
 			})
 		}
 }
 
-function facebookLoginUser() {
+function facebookLoginUser(redirect) {
 	return dispatch => {
 		dispatch(requestLogin())
 		AuthService.facebookLogin().then((value) => {
 			dispatch(loginSuccess())
-			success()
+			success(redirect)
 		}, (error) => {
 			dispatch(loginFailure())
 		})
@@ -98,15 +101,15 @@ export function checkLoginRequest() {
 	}
 }
 
-export function loginRequest (username, password) {
+export function loginRequest (username, password, redirect) {
     return (dispatch, getState) => {
-			return dispatch(loginUser(username, password))
+			return dispatch(loginUser(username, password, redirect))
 		}	
 }
 
-export function facebookLoginRequest() {
+export function facebookLoginRequest(redirect) {
 	return (dispatch, getState) => {
-		return dispatch(facebookLoginUser())
+		return dispatch(facebookLoginUser(redirect))
 	}
 }
 

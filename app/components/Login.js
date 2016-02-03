@@ -13,17 +13,24 @@ import { loginRequest } from '../actions/LoginActions';
 class Login extends Component {
 	constructor(props) {
 		super(props)
-        this.login = this.login.bind(this)
+    this.login = this.login.bind(this)
+		this.facebookLogin = this.facebookLogin.bind(this)
 	}
 	
 	login(e) {
+		e.preventDefault();  
+		const { dispatch } = this.props		
+		dispatch(
+				loginRequest(this.refs.username.value, this.refs.password.value, this.props.routing.query.next)    
+		)
+	}
+	
+	facebookLogin(e) {
 		e.preventDefault();
-        
-        const { dispatch } = this.props
-        
-        dispatch(
-            loginRequest(this.refs.username.value, this.refs.password.value)    
-        )
+		const { dispatch } = this.props		
+		dispatch (
+			facebookLoginRequest(this.props.routing.query.next)
+		)
 	}
 	
 	render() {
@@ -38,9 +45,16 @@ class Login extends Component {
                         Submit
                     </button>
                 </form>
+								<a href="" onClick={this.facebookLogin}>Facebook Login</a>
             </div>
 		);
 	}
 }
 
-export default connect()(Login)
+function mapStateToProps(state) {
+	return {
+		routing: state.routing.location
+	}
+}
+
+export default connect(mapStateToProps)(Login)

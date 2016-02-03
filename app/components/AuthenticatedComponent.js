@@ -14,7 +14,7 @@ export function requireAuth (ComposedComponent) {
 		
 		checkAuth() {
 			if (!this.props.isAuthenticated) {
-				let path = '/login?next=' + this.props.pathname + this.props.search
+				let path = '/login?next=' + encodeURIComponent(this.props.pathname + this.props.search)
 				this.props.dispatch(routeActions.push(path))
 			}
 		}

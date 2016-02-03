@@ -13,7 +13,6 @@ class CookbookApp extends Component {
     constructor (props) {
         super (props)
         this.logout = this.logout.bind(this)
-				this.facebookLogin = this.facebookLogin.bind(this)
     }
     
     logout(e) {
@@ -24,15 +23,6 @@ class CookbookApp extends Component {
            userLogout()
        )
 		}
-		
-		facebookLogin(e) {
-			e.preventDefault();
-			const { dispatch } = this.props
-			
-			dispatch (
-				facebookLoginRequest()
-			)
-		}
 	
 	get headerItems() {
         const { isLoggedIn } = this.props
@@ -41,7 +31,6 @@ class CookbookApp extends Component {
 			return (
 				<div>
 					<Link to="login">Login</Link>
-					<a href="" onClick={this.facebookLogin}>Facebook Login</a>
 					<Link to="signup">Signup</Link>
 				</div>
 			)
