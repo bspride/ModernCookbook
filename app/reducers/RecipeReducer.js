@@ -41,6 +41,8 @@ function creation (state = initialState, action) {
                     });
         case SAVE_RECIPE_SUCCESS:
             return Object.assign({}, state, {
+                        ingredients: action.ingredients,
+                        steps: action.steps,
                         isFetching: action.isFetching,
                         saveSuccessful: action.saveSuccessful
                     });

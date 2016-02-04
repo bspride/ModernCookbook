@@ -50,7 +50,7 @@ class Create extends Component {
             <div className="recipe-create">
                 <h2>Create Recipe</h2>
                 <h3>Title</h3>
-                <textArea col="50" row="5" ref="title" />
+                <input type="text" ref="title" />
                 <Ingredients 
                     add={ this.addIngredient }
                     mIngredients={ ingredients } />
