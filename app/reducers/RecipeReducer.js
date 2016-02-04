@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { ADD_INGREDIENT, ADD_STEP, 
+import { ADD_INGREDIENT, ADD_STEP, ADD_MATERIAL,
         SAVE_RECIPE_REQUEST, SAVE_RECIPE_SUCCESS, 
         SAVE_RECIPE_FAIL } from '../actions/RecipeActions';
 import { loadIngredient, loadStep } from '../actions/RecipeActions';
@@ -7,6 +7,7 @@ import { loadIngredient, loadStep } from '../actions/RecipeActions';
 const initialState = {
     ingredients: [],
     steps: [],
+    materials: [],
     isFetching: false,
     saveSuccessful: false
 }
@@ -34,6 +35,15 @@ function creation (state = initialState, action) {
                             }
                         ]
                     });
+        case ADD_MATERIAL:
+            return Object.assign({}, state, {
+                        materials: [
+                            ...(state.materials), {
+                                id: action.id,
+                                text: action.text
+                            }
+                        ]
+                    })
         case SAVE_RECIPE_REQUEST:
             return Object.assign({}, state, {
                         isFetching: action.isFetching,
@@ -51,27 +61,6 @@ function creation (state = initialState, action) {
                         isFetching: action.isFetching,
                         saveSuccessful: action.saveSuccessful
                     });
-        default:
-            return state;
-    }
-}
-
-function steps (state = [], action) {
-    switch (action.type) {
-        case ADD_STEP:
-            return [
-                ...state,
-                action
-            ]
-        default:
-            return state;
-    }
-}
-
-function createRecipe (state = {}, action) {
-    switch (action.type) {
-        case SAVE_RECIPE:
-            return action;
         default:
             return state;
     }

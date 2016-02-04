@@ -24,7 +24,8 @@ class RecipesApi {
             creator: creator.uid,
             title: recipe.title,
             ingredients: recipe.ingredients,
-            steps: recipe.steps
+            steps: recipe.steps,
+            materials: recipe.materials
         });
     }
 }
