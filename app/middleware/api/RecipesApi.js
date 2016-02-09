@@ -28,6 +28,17 @@ class RecipesApi {
             materials: recipe.materials
         });
     }
+		
+		getUserRecipes(uid, cb) {
+			const userRef = fireRef.child('users')
+			return userRef.child(uid).child('recipes').on("value", cb)
+		}
+		
+		stopListeningToRecipes(cb) {
+			const userRef = fireRef.child('users')
+			let uid = fireRef.getAuth().uid
+			userRef.child(uid).child('recipes').off("value", cb)
+		}
 }
 
 export default new RecipesApi()

@@ -4,7 +4,8 @@ import { loginRequest, success, userLogout } from '../actions/LoginActions';
 
 const initalState = {
 		isFetching: false,
-    isLoggedIn: false
+    isLoggedIn: false,
+		recipes: []
 }
 
 function auth (state = initalState, action) {
@@ -20,7 +21,11 @@ function auth (state = initalState, action) {
 							isLoggedIn: action.isLoggedIn
 						})
         case LOGOUT_REQUEST:
-            return action
+            return Object.assign({}, state, {
+							isFetching: action.isFetching,
+							isLoggedIn: action.isLoggedIn,
+							recipes: action.recipes
+						})
         default:
             return state;
     }
