@@ -9,7 +9,7 @@
     "start": "webpack-dev-server --port 3000"
   },
   "keywords": [],
-  "author": "Michael Clarke",
+  "author": "Michael Clarke   ",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.3.26",
