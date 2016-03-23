@@ -11,11 +11,11 @@ import Index from './components/Index'
 import Create from './containers/Cookbook/Recipes'
 
 export default (
-  <Route path="/" component={CookbookApp}>
-		<IndexRoute component={Index} />
+    <Route path="/" component={CookbookApp}>
+	    <IndexRoute component={Index} />
 		<Route path="login" component={Login} />
 		<Route path="signup" component={Signup} />
 		<Route path="home" component={requireAuth(Home)} />
 				 <Route path="create" component={requireAuth(Create)} />
-	</Route>
+    </Route>
 )
