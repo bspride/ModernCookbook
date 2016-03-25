@@ -1,12 +1,15 @@
 <header>
-  <nav>
-    <a [routerLink]="['Home']">Home</a>
-    <a [routerLink]="['About']">About</a>
-  </nav>
+  <div class="wrap">
+    <a [routerLink]="['Home']">
+      <img src="/img/shield-with-beta.png" />
+      <h1 class="title">{{api.title}}</h1>
+    </a>  
+    <nav>
+      <login-small></login-small>
+    </nav>
+  </div>
 </header>
 <main>
-  <h1 class="title">Hello from {{api.title}} !</h1>
-
   <!-- Images (and assets) are parsed and loaded from within the public directory -->
   <img src="/img/shield-with-beta.png">
 

@@ -5,12 +5,41 @@
 
 header {
   background-color: #fff;
-  padding: 16px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+  
+  a {
+    text-decoration: none;
+    color: #262626;
+  }
+  
+  .wrap {
+    width: 80%;
+    margin: 10px auto 10px auto;
+  }
+  
+  img {
+    height: 40px;
+    width: 50px;
+  }
+  
+  nav {
+    float: right;
+    
+    a {
+        text-decoration: none;
+        color: #262626;
+    }
+  }
+
+  .title {
+    display: inline-block;
+    margin: 5px;
+    vertical-align: top;
+  }    
 }
 
 main {
