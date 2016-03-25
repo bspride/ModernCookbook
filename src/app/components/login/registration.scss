@@ -1,0 +1,26 @@
+.register-form {
+    margin: 50px auto 20px auto;
+    padding: 20px;
+    width: 50%;
+    height: 400px;
+    background-color: #fff;
+    box-shadow: 0 5px 5px black;
+}
+
+.register-title {
+    color: #262626;
+}
+
+.form-group {
+    color: #262626;
+    margin: 10px auto 10px auto;
+    width: 40%;
+    
+    label {
+        float: left;
+    }
+}
+
+.clear {
+    clear: both;
+}
