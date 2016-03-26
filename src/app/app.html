@@ -1,0 +1,23 @@
+<header>
+  <div class="wrap">
+    <a [routerLink]="['Home']">
+      <img src="/img/shield-with-beta.png" />
+      <h1 class="title">{{api.title}}</h1>
+    </a>  
+    <nav>
+      <span class="register btn" *ngIf="!isLoggedIn">
+        <button id="login-btn">Sign In</button>
+        <button id="register-btn" (click)="onRegister()">Register</button>
+      </span>
+      <span class="register" *ngIf="isLoggedIn">
+        {{user.name}} 
+      </span>
+    </nav>
+  </div>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<footer>
+  <a href="{{ url }}">Webpack Angular 2 Starter</a>
+</footer>

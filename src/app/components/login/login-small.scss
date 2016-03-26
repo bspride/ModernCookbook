@@ -1,0 +1,22 @@
+span {
+  button {
+      background-color: #e6e6e6;
+      border: none;
+      margin: 0 -1px 0 -1px;
+      height: 50px;
+      border-radius: 15px;
+  }
+  
+  button:hover {
+      background-color: #a6a6a6;
+      color: #fff;
+  }
+  
+  #login-btn {
+      width: 75px;
+  }
+  
+  #register-btn {
+      width: 175px;
+  }
+}
