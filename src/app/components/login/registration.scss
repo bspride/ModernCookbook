@@ -19,8 +19,16 @@
     label {
         float: left;
     }
+    
+    .form-control {
+        float: right;
+    }
 }
 
 .clear {
     clear: both;
+}
+
+.error {
+    color: red;
 }
