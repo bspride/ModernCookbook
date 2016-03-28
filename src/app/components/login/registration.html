@@ -1,23 +1,26 @@
 <div class="register-form">
-  <h2 class="register-title">Registration</h2>
+  <h2 class="register-title" *ngIf="isRegister">Registration</h2>
+  <h2 class="register-title" *ngIf="!isRegister">Sign In</h2>
   <form>
       <div class="form-group">
-          <label for="firstname">First Name:</label>
-          <input type="text" class="form-control" required />
-      </div>
-      <div class="form-group">
-          <label for="lastname">Last Name:</label>
-          <input type="text" class="form-control" required />
-      </div>
-      <div class="form-group">
           <label for="email">Email:</label>
-          <input type="text" class="form-control" required />
-      </div>
-      <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" class="form-control" required />
+          <input #email type="text" class="form-control" required />
       </div>
       <div class="clear"></div>
-      <button type="submit" class="btn btn-default">Register</button>
+      <div class="form-group">
+          <label for="password">Password:</label>
+          <input #password type="password" class="form-control" required />
+      </div>
+      <div class="clear"></div>
+      <!--<div class="form-group">
+          <label for="validate-password">Validate Password:</label>
+          <input #validate type="password" class="form-control" required />
+      </div>
+      <div class="clear"></div>-->
+      <br />
+      <button *ngIf="isRegister" type="submit" class="btn btn-default" (click)="onRegister(email.value, password.value)">Register</button>
+      <button *ngIf="!isRegister" type="submit" class="btn btn-default" (click)="onSignIn(email.value, password.value); email.value=''; password.value=''">Sign In</button>
   </form>
+  <br />
+  <span class="error">{{loginError}}</span>
 </div>
