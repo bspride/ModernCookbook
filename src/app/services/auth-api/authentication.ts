@@ -20,6 +20,7 @@ export class AuthApi {
     }
     
     authenticate(email: string, password: string) {
+        // Return promise to the initial caller
         return this.ref.authWithPassword({
             email: email,
             password: password
