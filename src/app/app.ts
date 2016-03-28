@@ -9,6 +9,8 @@ import {Api} from './services/api/api';
 import {Home} from './components/home/home';
 import {About} from "./components/about/about";
 import {Registration} from './components/login/registration';
+import {LoginSmall} from './components/login/login-small';
+
 
 /*
  * App Component
@@ -17,7 +19,7 @@ import {Registration} from './components/login/registration';
 @Component({
   selector: 'app', // <app></app>
   providers: [...FORM_PROVIDERS, Api],
-  directives: [...ROUTER_DIRECTIVES],
+  directives: [...ROUTER_DIRECTIVES, LoginSmall],
   pipes: [],
   styles: [require('./app.scss')],
   template: require('./app.html')

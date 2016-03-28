@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core';
+import {Router} from 'angular2/router';
 //import {NgForm} from 'angular2/common';
 
 import {User} from '../../interfaces/User';
@@ -20,7 +21,7 @@ class Registration {
     loginError: string;
     // validPassword: string;
     
-    constructor(private _auth: AuthApi) {
+    constructor(private _auth: AuthApi, private _router: Router) {
         this.isRegistered = false;
         this.isLoggedIn = false;
         this.loginError = '';
@@ -45,12 +46,15 @@ class Registration {
     }
     
     onSignIn(email, password) {
+        let successLink = ['Home'];
+        
         this._auth.authenticate(email, password)
             .then(() => {
                 this.isRegistered = true;
                 this.isLoggedIn = true;
                 console.log("Success");
-                window.location.hash = "/";
+
+                this._router.navigate(successLink);
             })
             .catch((error) => {
                 console.log(error);

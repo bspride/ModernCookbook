@@ -1,5 +1,5 @@
 <span class="register btn" *ngIf="!isLoggedIn">
-    <button id="login-btn">Sign In</button>
+    <button id="login-btn" (click)="onSignIn()">Sign In</button>
     <button id="register-btn">Register</button>
 </span>
 <span class="register" *ngIf="isLoggedIn">

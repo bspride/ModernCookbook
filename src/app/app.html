@@ -5,13 +5,7 @@
       <h1 class="title">{{api.title}}</h1>
     </a>  
     <nav>
-      <span class="register btn" *ngIf="!isLoggedIn">
-        <button id="login-btn">Sign In</button>
-        <button id="register-btn" (click)="onRegister()">Register</button>
-      </span>
-      <span class="register" *ngIf="isLoggedIn">
-        {{user.name}} 
-      </span>
+      <login-small></login-small>
     </nav>
   </div>
 </header>
