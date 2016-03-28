@@ -42,8 +42,4 @@ export class App {
       email: "test@test.com"
     };
   }
-  
-  onRegister() {
-      window.location.hash = "#/Register";
-  }
 }
