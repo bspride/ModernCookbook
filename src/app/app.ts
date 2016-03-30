@@ -3,12 +3,15 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {FORM_PROVIDERS} from 'angular2/common';
 
 import '../style/app.scss';
-
+// Interfaces
 import {User} from './interfaces/user';
+// Services
 import {Api} from './services/api/api';
+import {AuthApi} from './services/auth-api/authentication';
+// Components
 import {Home} from './components/home/home';
 import {About} from "./components/about/about";
-import {Registration} from './components/login/registration';
+import {Security} from './components/security/security';
 import {LoginSmall} from './components/login/login-small';
 
 
@@ -18,7 +21,7 @@ import {LoginSmall} from './components/login/login-small';
  */
 @Component({
   selector: 'app', // <app></app>
-  providers: [...FORM_PROVIDERS, Api],
+  providers: [...FORM_PROVIDERS, Api, AuthApi],
   directives: [...ROUTER_DIRECTIVES, LoginSmall],
   pipes: [],
   styles: [require('./app.scss')],
@@ -27,19 +30,18 @@ import {LoginSmall} from './components/login/login-small';
 @RouteConfig([
   {path: '/', component: Home, name: 'Home'},
   {path: '/About', component: About, name: 'About'},
-  {path: '/Register', component: Registration, name: 'Registration'}
+  {path: '/Security/:task', component: Security, name: 'Security' }
 ])
 export class App {
   isLoggedIn: boolean;
   user: User;
   url: string = 'https://github.com/preboot/angular2-webpack';
 
-  constructor(public api: Api) {
+  constructor(public api: Api, private _auth: AuthApi) {
     this.isLoggedIn = false;
-    this.user = {
-      id: "0",
-      name: "test",
-      email: "test@test.com"
-    };
+    // This subscribes to the observerable and updates when the value changes
+    _auth.isLoggedIn$.subscribe(login => {
+        this.isLoggedIn = login;
+    });
   }
 }

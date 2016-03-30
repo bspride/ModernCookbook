@@ -1,7 +1,8 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
 
-import {Registration} from './registration';
+import {AuthApi} from '../../services/auth-api/authentication';
+import {Security} from '../security/security';
 
 @Component({
   selector: 'login-small',
@@ -12,10 +13,25 @@ import {Registration} from './registration';
   pipes: []
 })
 export class LoginSmall {
-  constructor(private _router: Router) {}
+  isLoggedIn: boolean;
+  constructor(private _auth: AuthApi, private _router: Router) {
+      this.isLoggedIn = false;
+      this.subscribe();
+  }
+  
+  subscribe() {
+      this._auth.isLoggedIn$.subscribe(login => {
+          this.isLoggedIn = login;
+      });
+  }
 
   onSignIn() {
-      let link = ['Registration'];
+      let link = ['Security', {task: 'login'}];
+      this._router.navigate(link);
+  }
+  
+  onRegister() {
+      let link = ['Security', {task: 'register'}];
       this._router.navigate(link);
   }
 }

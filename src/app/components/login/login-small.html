@@ -1,7 +1,7 @@
 <span class="register btn" *ngIf="!isLoggedIn">
     <button id="login-btn" (click)="onSignIn()">Sign In</button>
-    <button id="register-btn">Register</button>
+    <button id="register-btn" (click)="onRegister()">Register</button>
 </span>
 <span class="register" *ngIf="isLoggedIn">
-    {{user.name}} 
+    Logged In [LoginSmall Component] 
 </span>

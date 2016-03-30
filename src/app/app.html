@@ -3,6 +3,7 @@
     <a [routerLink]="['Home']">
       <img src="/img/shield-with-beta.png" />
       <h1 class="title">{{api.title}}</h1>
+      <span style="color:black" *ngIf="isLoggedIn">LoggedIn [AppComponent]</span>
     </a>  
     <nav>
       <login-small></login-small>
