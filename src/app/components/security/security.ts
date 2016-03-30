@@ -9,7 +9,7 @@ import {AuthApi} from '../../services/auth-api/authentication';
     selector: 'security',
     template: require('./security.html'),
     styles: [require('./security.scss')],
-    providers: [AuthApi]
+    providers: []
 })
 export /**
  * Registration
