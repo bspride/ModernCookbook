@@ -8,7 +8,7 @@ import {LoginSmall} from '../login/login-small';
     template: require('./navbar.html'),
     styles:[require('./navbar.scss')],
     providers: [],
-    directives: [],
+    directives: [LoginSmall],
     pipes: []
 })
 export class Navbar {
