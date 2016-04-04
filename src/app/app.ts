@@ -12,7 +12,7 @@ import {AuthApi} from './services/auth-api/authentication';
 import {Home} from './components/home/home';
 import {About} from "./components/about/about";
 import {Security} from './components/security/security';
-import {LoginSmall} from './components/login/login-small';
+import {Navbar} from './components/navbar/navbar';
 
 
 /*
