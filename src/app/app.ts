@@ -22,7 +22,7 @@ import {LoginSmall} from './components/login/login-small';
 @Component({
   selector: 'app', // <app></app>
   providers: [...FORM_PROVIDERS, Api, AuthApi],
-  directives: [...ROUTER_DIRECTIVES, LoginSmall],
+  directives: [...ROUTER_DIRECTIVES, Navbar],
   pipes: [],
   styles: [require('./app.scss')],
   template: require('./app.html')

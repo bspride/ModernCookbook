@@ -1,6 +1,7 @@
 import {Injectable} from 'angular2/core';
 import {Subject} from 'rxjs/Subject';
-import Firebase = require('firebase');
+import Firebase = require("firebase");
+
 // Will probably move constant to a different file
 export const FIREBASEURL = "https://sizzling-fire-4278.firebaseio.com/";
 
