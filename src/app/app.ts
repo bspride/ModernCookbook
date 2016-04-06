@@ -1,8 +1,10 @@
 import {Component} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouteConfig, RouterLink} from 'angular2/router';
 import {FORM_PROVIDERS} from 'angular2/common';
 
 import '../style/app.scss';
+//Directives
+import {LoggedInRouterOutlet} from './directives/router-outlet';
 // Interfaces
 import {User} from './interfaces/user';
 // Services
@@ -22,7 +24,7 @@ import {Navbar} from './components/navbar/navbar';
 @Component({
   selector: 'app', // <app></app>
   providers: [...FORM_PROVIDERS, Api, AuthApi],
-  directives: [...ROUTER_DIRECTIVES, Navbar],
+  directives: [RouterLink, LoggedInRouterOutlet, Navbar],
   pipes: [],
   styles: [require('./app.scss')],
   template: require('./app.html')
