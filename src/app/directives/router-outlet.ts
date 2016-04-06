@@ -28,8 +28,8 @@ export class LoggedInRouterOutlet extends RouterOutlet {
     if (this._canActivate(instruction.urlPath)) {
       return super.activate(instruction);
     }
-
-    this.parentRouter.navigate(['Login']);
+    let link = ['Security', {task: 'login'}];
+    this.parentRouter.navigate(link);
   }
 
   _canActivate(url) {
