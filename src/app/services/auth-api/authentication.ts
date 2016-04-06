@@ -7,14 +7,16 @@ export const FIREBASEURL = "https://sizzling-fire-4278.firebaseio.com/";
 
 @Injectable()
 export class AuthApi {
-    // Observable login check stream (boolean)
-    isLoggedIn$ = this._login.asObservable();
-    loginError$ = this._error.asObservable();
+    
     // Firebase reference
     private _ref: Firebase;
     // Observable login check
     private _login = new Subject<boolean>();
     private _error = new Subject<string>();
+
+    // Observable login check stream (boolean)
+    isLoggedIn$ = this._login.asObservable();
+    loginError$ = this._error.asObservable();
 
     constructor() {
         this._ref = new Firebase(FIREBASEURL);
