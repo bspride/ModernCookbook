@@ -7,7 +7,7 @@ import {AppNavbar} from '../appnavbar/appnavbar';
 @Component({
     selector: 'navbar',
     template: require('./navbar.html'),
-    styles:[require('./navbar.scss')],
+    styles: [require('./navbar.scss')],
     providers: [],
     directives: [LoginSmall, AppNavbar],
     pipes: []
@@ -18,10 +18,10 @@ export class Navbar {
         this.isLoggedIn = false;
         this.subscribe();
     }
-    
+
     subscribe() {
         this._auth.isLoggedIn$.subscribe(login => {
             this.isLoggedIn = login;
-        })
+        });
     }
 }

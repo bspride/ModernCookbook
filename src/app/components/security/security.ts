@@ -20,13 +20,13 @@ class Security implements OnInit {
     isRegister: boolean;
     loginError: string;
     // validPassword: string;
-    
+
     constructor(
         private _auth: AuthApi,
-        private _routeParams: RouteParams, 
+        private _routeParams: RouteParams,
         private _router: Router
     ) {}
-    
+
     ngOnInit() {
         // Set task from route
         let routeTask = this._routeParams.get('task');
@@ -37,10 +37,10 @@ class Security implements OnInit {
             this.task = "Register";
             this.isRegister = true;
         }
-        
+
         this.subscribe();
     }
-    
+
     subscribe() {
         let successLink = ['Home'];
         this._auth.isLoggedIn$.subscribe(login => {
@@ -53,19 +53,19 @@ class Security implements OnInit {
             this.loginError = error;
         });
     }
-    
+
     onSignIn(email, password) {
         let successLink = ['Home'];
-        
+
         this._auth.authenticate(email, password);
     }
-    
+
     // validatePassword(password) {
     //     if(this.validatePassword === password) {
-            
+
     //     }
     // }
-    
+
     onRegister(email, password) {
         // this._auth.registerUser(email, password)
         //     .then(() => {
