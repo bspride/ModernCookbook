@@ -13,4 +13,8 @@ export class AppNavbar {
     constructor() {
         //Do important stuff here
     }
+    
+    onLogout() {
+        
+    }
 }
