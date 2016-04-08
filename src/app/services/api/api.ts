@@ -7,11 +7,12 @@ export const FIREBASEURL = "https://sizzling-fire-4278.firebaseio.com/";
 
 @Injectable()
 export class Api {
-  title: 'Modern Cookbook';
+  title: string = 'Modern Cookbook';
   private _db: Firebase;
+  userId: string;
   
-  constructor(userId: string) {
-      this._db = new Firebase(FIREBASEURL + userId + '/recipes');
+  constructor() {
+      this._db = new Firebase(FIREBASEURL + this.userId + '/recipes');
   }
   
   getMyRecipes(): Observable<Recipe> {
