@@ -10,11 +10,16 @@ import {Router} from 'angular2/router';
     pipes: []
 })
 export class AppNavbar {
-    constructor() {
+    constructor(private _router: Router) {
         //Do important stuff here
     }
     
     onLogout() {
         
+    }
+    
+    createRecipe() {
+        let link = ['CreateRecipe'];
+        this._router.navigate(link);
     }
 }

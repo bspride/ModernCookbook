@@ -15,6 +15,7 @@ import {Home} from './components/home/home';
 import {About} from "./components/about/about";
 import {Security} from './components/security/security';
 import {Navbar} from './components/navbar/navbar';
+import {CreateRecipe} from './components/createRecipe/createRecipe';
 
 
 /*
@@ -32,7 +33,8 @@ import {Navbar} from './components/navbar/navbar';
 @RouteConfig([
   {path: '/', component: Home, name: 'Home'},
   {path: '/About', component: About, name: 'About'},
-  {path: '/Security/:task', component: Security, name: 'Security' }
+  {path: '/Security/:task', component: Security, name: 'Security' },
+  {path: '/Create', component: CreateRecipe, name: 'CreateRecipe'}
 ])
 export class App {
   isLoggedIn: boolean;
