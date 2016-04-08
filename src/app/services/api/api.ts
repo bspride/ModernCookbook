@@ -12,7 +12,10 @@ export class Api {
   userId: string;
   
   constructor() {
+<<<<<<< HEAD
       this._db = new Firebase(FIREBASEURL + this.userId + '/recipes');
+=======
+>>>>>>> e17c163bf6dfe879d593916d814149a64c979c7f
   }
   
   getMyRecipes(): Observable<Recipe> {
