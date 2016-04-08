@@ -10,8 +10,7 @@ export class Api {
   title: 'Modern Cookbook';
   private _db: Firebase;
   
-  constructor(userId: string) {
-      this._db = new Firebase(FIREBASEURL + userId + '/recipes');
+  constructor() {
   }
   
   getMyRecipes(): Observable<Recipe> {
