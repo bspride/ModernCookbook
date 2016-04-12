@@ -16,6 +16,7 @@ import {About} from "./components/about/about";
 import {Security} from './components/security/security';
 import {Navbar} from './components/navbar/navbar';
 import {CreateRecipe} from './components/createRecipe/createRecipe';
+import {RecipeList} from './components/recipeList/recipe-list';
 
 
 /*
@@ -34,6 +35,7 @@ import {CreateRecipe} from './components/createRecipe/createRecipe';
   {path: '/', component: Home, name: 'Home'},
   {path: '/About', component: About, name: 'About'},
   {path: '/Security/:task', component: Security, name: 'Security' },
+  {path: '/My', component: RecipeList, name: "MyRecipe"},
   {path: '/Create', component: CreateRecipe, name: 'CreateRecipe'}
 ])
 export class App {

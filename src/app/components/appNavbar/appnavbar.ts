@@ -18,6 +18,11 @@ export class AppNavbar {
         
     }
     
+    myRecipes() {
+        let link = ['MyRecipe'];
+        this._router.navigate(link);
+    }
+    
     createRecipe() {
         let link = ['CreateRecipe'];
         this._router.navigate(link);
