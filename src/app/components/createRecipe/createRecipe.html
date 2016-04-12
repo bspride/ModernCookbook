@@ -1,3 +1,45 @@
-<div>
-    <h2>Create a new Recipe</h2>
+<div class="create-form">
+    <h2>Alright, let's Create a Recipe</h2>
+    <h3>Add some {{process}}</h3>
+    <span class="hint">Press [Enter] after each added entry. :)</span>
+    <div class="create-container">
+        <form *ngIf="process==='Ingredients'">
+            <ul>
+                <li *ngFor="#ing of ingredients">
+                    <label>Ingredients</label>
+                    <input #newIngredient
+                        (keyup.enter)="addIngredients(newIngredient.value)" 
+                        type="text" required />
+                </li>
+            </ul>
+        </form>
+        <form *ngIf="process==='Steps'">
+            <ul>
+                <li *ngFor="#step of steps">
+                    <label>Steps</label>
+                    <input #newStep
+                        (keyup.enter)="addSteps(newStep.value)" 
+                        type="text" required />
+                </li>
+            </ul>
+        </form>
+        <form *ngIf="process==='Materials'">
+            <ul>
+                <li *ngFor="#ing of ingredients">
+                    <label>Materials</label>
+                    <input #newMaterial
+                        (keyup.enter)="addMaterials(newMaterial.value)" 
+                        type="text" required />
+                </li>
+            </ul>
+        </form>
+    </div>
+    <div class="nav-container">
+        <button class="nav-left" (click)="goToPreviousProcess()">
+            Previous
+        </button>
+        <button class="nav-right" (click)="goToNextProcess()">
+            Add {{processes[processId + 1]}}
+        </button>
+    </div>
 </div>
