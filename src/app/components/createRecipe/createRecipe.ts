@@ -2,69 +2,90 @@ import {Component, OnInit} from 'angular2/core';
 import {RouteConfig, Router} from 'angular2/router';
 
 import {Security} from '../security/security';
+import {Title} from './title/title';
+import {Ingredients} from './ingredients/ingredients';
+import {Steps} from './steps/steps';
 
 @Component({
     selector: 'create-recipe',
     template: require('./createRecipe.html'),
     styles: [require('./createRecipe.scss')],
     providers: [],
-    directives: [],
+    directives: [Title, Ingredients, Steps],
     pipes: []
 })
-export class CreateRecipe implements OnInit {
+export class CreateRecipe {
+    // These variables control the steps for creating
+    // a recipe
     processId: number;
-    process: string;
-    processes: Array<string>;
+    currentProcess: string;
+    allProcesses: Array<string>;
+    
+    // Recipe specific variables
     isPublic: boolean;
+    title: string;
     ingredients: Array<string>;
     steps: Array<string>;
-    materials: Array<string>;
+    //materials: Array<string>;
     
-    constructor() {}
-    
-    ngOnInit() {
+    constructor() {
         this.processId = 0;
-        this.processes = [
+        this.allProcesses = [
+            "Title",
             "Ingredients",
-            "Steps",
-            "Materials"
+            "Steps"
         ];
-        this.process = "Ingredients"
+        this.currentProcess = this.allProcesses[0];
+        
         this.ingredients = [];
         this.steps = [];
-        this.materials = [];
-        
-        this.ingredients.push('');
-        this.steps.push('');
-        this.materials.push('');
+        //this.materials = [];
     }
     
-    addIngredients(ingredient) {
+    addedTitle(newTitle) {
+        this.title = newTitle;
+        // Navigate to next process after adding title
+        this.goToNextProcess();
+    }
+    
+    addedIngredient(ingredient) {
         // Parse ingredient for name and amount
-        this.ingredients.push(ingredient);
+        if(ingredient !== null) {
+            if(this.ingredients[0] === '') {
+                this.ingredients[0] = ingredient;
+            } else {
+                this.ingredients.push(ingredient);    
+            }
+        }
     }
     
-    addSteps(step) {
+    addedStep(step) {
         // Do additional processing for steps
-        this.steps.push(step);
+        if(step !== null) {
+            if(this.steps[0] === '') {
+                this.steps[0] = step;
+            } else {
+                this.steps.push(step);
+            }
+        }
     }
     
-    addMaterials(material) {
-        // Do additional processing for materials
-        this.materials.push(material);
-    }
+    // addMaterials(material) {
+    //     // Do additional processing for materials
+    //     this.materials.push(material);
+    // }
     
     goToNextProcess() {
-        if(this.processId < this.processes.length) {
+        if(this.processId < this.allProcesses.length) {
             this.processId++;
-            this.process = this.processes[this.processId];    
+            this.currentProcess = this.allProcesses[this.processId];
         }
     }
     
     goToPreviousProcess() {
         if(this.processId > 0) {
             this.processId--;
-            this.process = this.processes[this.processId];
+            this.currentProcess = this.allProcesses[this.processId];
         }
     }
     
@@ -74,7 +95,7 @@ export class CreateRecipe implements OnInit {
         let recipe = {
             ingredients: this.ingredients,
             steps: this.steps,
-            materials: this.materials,
+            //materials: this.materials,
             isPublic: this.isPublic
         };
     }
