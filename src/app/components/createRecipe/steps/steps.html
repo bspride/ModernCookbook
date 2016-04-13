@@ -1,0 +1,25 @@
+<div class="ingredients-list">
+    <h4>Ingredients</h4>
+    <ul>
+        <li *ngFor="#ing of ingredients">
+            {{ing}}
+        </li>
+    </ul>
+</div>
+<form class="steps-list">
+    <h4>Now, add the steps, reference ingredients to the left</h4>
+    <ul>
+        <li>
+            <label>Steps</label>
+            <input #newStep
+                (keyup.enter)="addSteps(newStep.value)" 
+                type="text" required />
+        </li>
+        <li *ngFor="#step of steps">
+            <label>Steps</label>
+            <input #newStep
+                (keyup.enter)="addSteps(newStep.value)" 
+                type="text" required />
+        </li>
+    </ul>
+</form>

@@ -1,0 +1,7 @@
+<form class="center-title">
+    <h4>What is the title of your recipe?</h4>
+    <label>Recipe Title</label>
+    <input #title
+        (keyup.enter)="addTitle(title.value)" 
+        type="text" required />
+</form>

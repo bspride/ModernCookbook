@@ -7,16 +7,7 @@
     color: #262626;
     
     h3 {
-        margin-bottom: 5px;
-    }
-    
-    li {
-        list-style: none;
-        
-        input {
-            width: 250px;
-            margin: 5px 0 5px 20px;
-        }
+        margin-bottom: 15px;
     }
     
     .hint {
@@ -25,11 +16,17 @@
     }
     
     .create-container {
-        width: 50%;
+        width: 75%;
         height: 65%;
         margin: 0 auto 0 auto;
         border: solid 1px #d9d9d9;
         border-radius: 15px;
+        padding: 0 25px 0 25px;
+        background-color: #B2DFDB;
+    }
+    
+    .center-title {
+        margin: auto;
     }
     
     .nav-container {
