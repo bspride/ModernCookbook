@@ -1,6 +1,5 @@
-import {Component, OnInit, OnDestroy} from 'angular2/core';
+import {Component, OnInit, OnDestroy, Inject} from 'angular2/core';
 import {Recipe} from '../../models/recipe';
-import {apiProvider} from '../../services/api/api.provider';
 import {Api} from '../../services/api/api';
 import {Subscription} from 'rxjs/Subscription';
 
@@ -8,7 +7,7 @@ import {Subscription} from 'rxjs/Subscription';
     selector: 'recipe-list',
     template: require('./recipe-list.html'),
     styles: [require('./recipe-list.scss')],
-    providers: [apiProvider],
+    providers: [Api],
     directives: [],
     pipes: []
 })
@@ -17,11 +16,11 @@ export class RecipeList implements OnInit, OnDestroy{
     public subscription: Subscription;
     
     constructor(
-        private api: Api
+        private _api: Api
     ) { }
     
     ngOnInit() {
-        this.subscription = this.api.getMyRecipes().subscribe(recipe => {
+        this.subscription = this._api.getMyRecipes().subscribe(recipe => {
             this.recipes.push(recipe);
         });
     }

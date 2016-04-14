@@ -1,6 +1,7 @@
 import {Injectable} from 'angular2/core';
 import {Observable} from 'rxjs/Observable';
 import {Recipe} from '../../models/recipe';
+import {AuthApi} from '../auth-api/authentication';
 import Firebase = require("firebase");
 
 export const FIREBASEURL = "https://sizzling-fire-4278.firebaseio.com/";
@@ -10,8 +11,9 @@ export class Api {
   title: string = 'Modern Cookbook';
   private _db: Firebase;
   
-  constructor(private _userId: string) {
-      this._db = new Firebase(FIREBASEURL + 'users/' + this._userId + '/recipes');
+  constructor(userService: AuthApi) {
+      let userId = userService.getUserId()
+      this._db = new Firebase(FIREBASEURL + 'users/' + userId + '/recipes');
   }
   
   getMyRecipes(): Observable<Recipe> {
