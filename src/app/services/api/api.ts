@@ -9,14 +9,8 @@ export const FIREBASEURL = "https://sizzling-fire-4278.firebaseio.com/";
 export class Api {
   title: string = 'Modern Cookbook';
   private _db: Firebase;
-  private _userId: string;
   
-  constructor() {
-      
-  }
-  
-  setUserId(userId: string) {
-      this._userId = userId;
+  constructor(private _userId: string) {
       this._db = new Firebase(FIREBASEURL + 'users/' + this._userId + '/recipes');
   }
   

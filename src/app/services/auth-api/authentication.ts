@@ -51,4 +51,9 @@ export class AuthApi {
 
         return false;
     }
+    
+    getUserId() {
+        var authData = this._ref.getAuth();
+        return authData.uid;
+    }
 }
