@@ -1,15 +1,15 @@
-<form class="center-ingredients">
+<form class="center-ingredients form-group">
     <h4>Add some ingredients</h4>
     <ul>
         <li>
             <label>Ingredients</label>
-            <input #newIngredient
+            <input #newIngredient class="form-control"
                 (keyup.enter)="addIngredient(newIngredient.value)" 
                 type="text" required />
         </li>
         <li *ngFor="#ing of ingredients">
             <label>Ingredients</label>
-            <input #newIngredient
+            <input #newIngredient class="form-control"
                 (keyup.enter)="addIngredient(newIngredient.value)" 
                 type="text" required />
         </li>
