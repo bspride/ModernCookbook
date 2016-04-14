@@ -42,7 +42,7 @@ class Security implements OnInit {
     }
 
     subscribe() {
-        let successLink = ['Home'];
+        let successLink = ['MyRecipe'];
         this._auth.isLoggedIn$.subscribe(login => {
             this.isLoggedIn = login;
             if(login) {
@@ -55,7 +55,7 @@ class Security implements OnInit {
     }
 
     onSignIn(email, password) {
-        let successLink = ['Home'];
+        let successLink = ['MyRecipe'];
 
         this._auth.authenticate(email, password);
     }
