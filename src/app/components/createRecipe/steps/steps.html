@@ -12,13 +12,13 @@
         <li>
             <label>Steps</label>
             <input #newStep class="form-control"
-                (keyup.enter)="addSteps(newStep.value)" 
+                (keyup.enter)="addStep(newStep.value)" 
                 type="text" required />
         </li>
         <li *ngFor="#step of steps">
             <label>Steps</label>
             <input #newStep class="form-control"
-                (keyup.enter)="addSteps(newStep.value)" 
+                (keyup.enter)="addStep(newStep.value)" 
                 type="text" required />
         </li>
     </ul>
