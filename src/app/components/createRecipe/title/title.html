@@ -1,7 +1,7 @@
-<form class="center-title">
+<form class="center-title form-group">
     <h4>What is the title of your recipe?</h4>
     <label>Recipe Title</label>
-    <input #title
+    <input #title class="form-control"
         (keyup.enter)="addTitle(title.value)" 
         type="text" required />
 </form>
