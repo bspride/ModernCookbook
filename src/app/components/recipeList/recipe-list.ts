@@ -20,6 +20,7 @@ export class RecipeList implements OnInit, OnDestroy{
     ) { }
     
     ngOnInit() {
+        this.api.setUserId("8b214f3f-936b-471f-b7e2-5e3a3df54938");
         this.subscription = this.api.getMyRecipes().subscribe(recipe => {
             this.recipes.push(recipe);
         });
