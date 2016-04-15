@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 
 import {AuthApi} from '../../services/auth-api/authentication';
 import {LoginSmall} from '../login/login-small';
@@ -12,11 +12,15 @@ import {AppNavbar} from '../appnavbar/appnavbar';
     directives: [LoginSmall, AppNavbar],
     pipes: []
 })
-export class Navbar {
+export class Navbar implements OnInit {
     isLoggedIn: boolean;
     constructor(private _auth: AuthApi) {
         this.isLoggedIn = false;
         this.subscribe();
+    }
+    
+    ngOnInit() {
+        this.isLoggedIn = this._auth.isLoggedIn();
     }
 
     subscribe() {
