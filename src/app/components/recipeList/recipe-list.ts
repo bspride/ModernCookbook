@@ -7,7 +7,7 @@ import {Subscription} from 'rxjs/Subscription';
     selector: 'recipe-list',
     template: require('./recipe-list.html'),
     styles: [require('./recipe-list.scss')],
-    providers: [Api],
+    providers: [],
     directives: [],
     pipes: []
 })
