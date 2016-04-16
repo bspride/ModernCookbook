@@ -6,6 +6,8 @@ import {Title} from './title/title';
 import {Ingredients} from './ingredients/ingredients';
 import {Steps} from './steps/steps';
 
+import {Api} from '../../services/api/api';
+
 @Component({
     selector: 'create-recipe',
     template: require('./createRecipe.html'),
@@ -27,7 +29,7 @@ export class CreateRecipe {
     ingredients: Array<string>;
     steps: Array<string>;
     
-    constructor() {
+    constructor(private _api: Api) {
         this.processId = 0;
         this.allProcesses = [
             "Title",
@@ -41,6 +43,7 @@ export class CreateRecipe {
     
     addedTitle(newTitle) {
         this.title = newTitle;
+        console.log(this.title);
         // Navigate to next process after adding title
         this.goToNextProcess();
     }
@@ -87,7 +90,11 @@ export class CreateRecipe {
         let recipe = {
             ingredients: this.ingredients,
             steps: this.steps,
-            isPublic: this.isPublic
+            isPublic: this.isPublic,
+            title: this.title,
         };
+        console.log(recipe);
+        
+        this._api.saveRecipe(recipe);
     }
 }
