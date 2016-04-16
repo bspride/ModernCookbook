@@ -9,26 +9,37 @@ export const FIREBASEURL = "https://sizzling-fire-4278.firebaseio.com/";
 @Injectable()
 export class Api {
   title: string = 'Modern Cookbook';
-  private _db: Firebase;
   
-  constructor(userService: AuthApi) {
-      let userId = userService.getUserId()
-      this._db = new Firebase(FIREBASEURL + 'users/' + userId + '/recipes');
-  }
+  constructor(private _userService: AuthApi) {
+      
+    }
   
   getMyRecipes(): Observable<Recipe> {
+      let firebaseRef = new Firebase(FIREBASEURL + 'recipes');
       return Observable.create(observer => {
-          let listener = this._db.on('child_added', snapshot => {
+          let listener = firebaseRef.orderByChild("creator").equalTo(this._userService.getUserId()).on('child_added', snapshot => {
              let data = snapshot.val();
              observer.next(new Recipe(
                  snapshot.key(),
-                 "Recipe!"
+                 data.title
              ));
           }, observer.error);
           
           return () => {
-              this._db.off('child_added', listener);
+              firebaseRef.off('child_added', listener);
           }
       })
+  }
+  
+  saveRecipe(recipe: any) {
+      console.log(recipe);
+      let firebaseRef = new Firebase(FIREBASEURL + 'recipes');
+      let newRecipeRef = firebaseRef.push({
+          title: recipe.title,
+          creator: this._userService.getUserId()
+      });
+      
+      //Need to then save id to users recipe array
+      console.log(newRecipeRef);
   }
 }
