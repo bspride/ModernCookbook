@@ -43,6 +43,12 @@ export class AuthApi {
             this._error.next(error);
         });
     }
+    
+    logout() {
+        this._ref.unauth();
+        
+        this._login.next(false);
+    }
 
     isLoggedIn() {
         if(this._ref.getAuth()) {

@@ -1,6 +1,8 @@
 import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
 
+import {AuthApi} from '../../services/auth-api/authentication';
+
 @Component({
     selector: 'app-navbar',
     template: require('./appnavbar.html'),
@@ -10,12 +12,12 @@ import {Router} from 'angular2/router';
     pipes: []
 })
 export class AppNavbar {
-    constructor(private _router: Router) {
+    constructor(private _router: Router, private _userService: AuthApi) {
         //Do important stuff here
     }
     
     onLogout() {
-        
+        this._userService.logout();
     }
     
     myRecipes() {
