@@ -4,7 +4,8 @@
         <li>
             <label>Ingredients</label>
             <input #newIngredient class="form-control"
-                ngControl="ingredient"
+                ngControl="newIngredient"
+                [(ngModel)]="ingredient"
                 (keyup.enter)="addIngredient(newIngredient.value)" 
                 type="text" required />
         </li>

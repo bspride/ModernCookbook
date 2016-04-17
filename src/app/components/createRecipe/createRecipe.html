@@ -8,6 +8,7 @@
         </recipe-title>
         <recipe-ingredients *ngIf="currentProcess==='Ingredients'"
             (addedIngredient)="addedIngredient($event)"
+            (triggerNextProcess)="goToNextProcess()"
             [ingredients]="ingredients">
         </recipe-ingredients>
         <recipe-steps *ngIf="currentProcess==='Steps'"
@@ -20,7 +21,7 @@
         <button class="nav-left btn btn-default" (click)="goToPreviousProcess()">
             Previous
         </button>
-        <button class="nav-right btn btn-default" (click)="goToNextProcess()">
+        <button class="nav-right btn btn-default" *ngIf="processId < allProcesses.length - 1" (click)="saveProcess()">
             Add {{allProcesses[processId + 1]}}
         </button>
         <button class="btn btn-default" (click)="saveRecipe()">

@@ -7,12 +7,17 @@ import {Ingredients} from './ingredients/ingredients';
 import {Steps} from './steps/steps';
 
 import {Api} from '../../services/api/api';
+import {Create} from '../../services/create/create';
+
+const TITLE = "Title";
+const INGREDIENTS = "Ingredients";
+const STEPS = "Steps";
 
 @Component({
     selector: 'create-recipe',
     template: require('./createRecipe.html'),
     styles: [require('./createRecipe.scss')],
-    providers: [],
+    providers: [Create],
     directives: [Title, Ingredients, Steps],
     pipes: []
 })
@@ -20,7 +25,7 @@ export class CreateRecipe {
     // These variables control the steps for creating
     // a recipe
     processId: number = 0;
-    allProcesses: Array<string> = ["Title", "Ingredients", "Steps"];
+    allProcesses: Array<string> = [TITLE, INGREDIENTS, STEPS];
     currentProcess: string;
     
     // Recipe specific variables
@@ -29,7 +34,11 @@ export class CreateRecipe {
     ingredients: Array<string>;
     steps: Array<string>;
     
-    constructor(private _router: Router, private _api: Api) {
+    constructor(
+        private _router: Router, 
+        private _api: Api,
+        private _create: Create
+    ) {
         this.currentProcess = this.allProcesses[0];
         this.ingredients = [];
         this.steps = [];
@@ -51,6 +60,7 @@ export class CreateRecipe {
                 this.ingredients.push(ingredient);    
             }
         }
+        // this.goToNextProcess();
     }
     
     addedStep(step) {
@@ -60,6 +70,27 @@ export class CreateRecipe {
                 this.steps[0] = step;
             } else {
                 this.steps.push(step);
+            }
+        }
+        // this.goToNextProcess();
+    }
+    
+    saveProcess() {
+        if(this.processId < this.allProcesses.length) {
+            // Check the current process and save if necessary
+            switch(this.currentProcess) {
+                case TITLE:
+                    this._create.saveTitle();
+                    break;
+                case INGREDIENTS:
+                    this._create.saveIngredients();
+                    break;
+                case STEPS:
+                    this._create.saveSteps();
+                    break;
+                default:
+                    // TODO Something weird happened
+                    break;
             }
         }
     }
@@ -76,6 +107,10 @@ export class CreateRecipe {
             this.processId--;
             this.currentProcess = this.allProcesses[this.processId];
         }
+    }
+    
+    triggerNextProcess() {
+        this.goToNextProcess();
     }
     
     saveRecipe(isPublic) {

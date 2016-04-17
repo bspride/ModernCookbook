@@ -3,9 +3,7 @@
     <label>Recipe Title</label>
     <input #title="ngForm" class="form-control"
         ngControl="title"
+        [(ngModel)]="newTitle"
         (keyup.enter)="addTitle(title.value)" 
         type="text" required />
-    <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
-        Recipe Title is required
-    </div>
 </form>
