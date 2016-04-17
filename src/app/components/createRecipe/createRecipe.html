@@ -17,13 +17,13 @@
         </recipe-steps>
     </div>
     <div class="nav-container">
-        <button class="nav-left" (click)="goToPreviousProcess()">
+        <button class="nav-left btn btn-default" (click)="goToPreviousProcess()">
             Previous
         </button>
-        <button class="nav-right" (click)="goToNextProcess()">
+        <button class="nav-right btn btn-default" (click)="goToNextProcess()">
             Add {{allProcesses[processId + 1]}}
         </button>
-        <button (click)="saveRecipe()">
+        <button class="btn btn-default" (click)="saveRecipe()">
             Save Recipe
         </button>
     </div>

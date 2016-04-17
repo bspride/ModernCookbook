@@ -19,9 +19,9 @@ import {Api} from '../../services/api/api';
 export class CreateRecipe {
     // These variables control the steps for creating
     // a recipe
-    processId: number;
+    processId: number = 0;
+    allProcesses: Array<string> = ["Title", "Ingredients", "Steps"];
     currentProcess: string;
-    allProcesses: Array<string>;
     
     // Recipe specific variables
     isPublic: boolean;
@@ -30,12 +30,6 @@ export class CreateRecipe {
     steps: Array<string>;
     
     constructor(private _api: Api) {
-        this.processId = 0;
-        this.allProcesses = [
-            "Title",
-            "Ingredients",
-            "Steps"
-        ];
         this.currentProcess = this.allProcesses[0];
         this.ingredients = [];
         this.steps = [];

@@ -4,12 +4,14 @@
         <li>
             <label>Ingredients</label>
             <input #newIngredient class="form-control"
+                ngControl="ingredient"
                 (keyup.enter)="addIngredient(newIngredient.value)" 
                 type="text" required />
         </li>
         <li *ngFor="#ing of ingredients">
             <label>Ingredients</label>
             <input #newIngredient class="form-control"
+                ngControl="ingredient"
                 (keyup.enter)="addIngredient(newIngredient.value)" 
                 type="text" required />
         </li>

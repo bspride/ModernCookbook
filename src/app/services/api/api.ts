@@ -36,7 +36,9 @@ export class Api {
       let firebaseRef = new Firebase(FIREBASEURL + 'recipes');
       let newRecipeRef = firebaseRef.push({
           title: recipe.title,
-          creator: this._userService.getUserId()
+          creator: this._userService.getUserId(),
+          ingredients: recipe.ingredients,
+          steps: recipe.steps
       });
       
       //Need to then save id to users recipe array
