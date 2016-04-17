@@ -29,7 +29,7 @@ export class CreateRecipe {
     ingredients: Array<string>;
     steps: Array<string>;
     
-    constructor(private _api: Api) {
+    constructor(private _router: Router, private _api: Api) {
         this.currentProcess = this.allProcesses[0];
         this.ingredients = [];
         this.steps = [];
@@ -79,6 +79,7 @@ export class CreateRecipe {
     }
     
     saveRecipe(isPublic) {
+        let link = ['MyRecipe'];
         this.isPublic = isPublic;
         
         let recipe = {
@@ -89,6 +90,12 @@ export class CreateRecipe {
         };
         console.log(recipe);
         
-        this._api.saveRecipe(recipe);
+        this._api.saveRecipe(recipe)
+            .then(() => {
+                this._router.navigate(link);
+            })
+            .catch(err => {
+                console.log("Failed")    
+            });
     }
 }

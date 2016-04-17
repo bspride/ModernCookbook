@@ -43,5 +43,6 @@ export class Api {
       
       //Need to then save id to users recipe array
       console.log(newRecipeRef);
+      return newRecipeRef;
   }
 }
