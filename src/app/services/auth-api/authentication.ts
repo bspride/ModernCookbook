@@ -1,5 +1,6 @@
 import {Injectable} from 'angular2/core';
 import {Subject} from 'rxjs/Subject';
+import {Router} from 'angular2/router';
 import Firebase = require("firebase");
 
 // Will probably move constant to a different file
@@ -18,7 +19,7 @@ export class AuthApi {
     isLoggedIn$ = this._login.asObservable();
     loginError$ = this._error.asObservable();
 
-    constructor() {
+    constructor(private _router: Router) {
         this._ref = new Firebase(FIREBASEURL);
     }
 
@@ -45,9 +46,10 @@ export class AuthApi {
     }
     
     logout() {
-        this._ref.unauth();
-        
+        this._ref.unauth();        
         this._login.next(false);
+        let link = ['Security', {task: 'login'}];
+        this._router.navigate(link);
     }
 
     isLoggedIn() {
