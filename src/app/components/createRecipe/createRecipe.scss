@@ -15,6 +15,26 @@
         color: #8c8c8c;
     }
     
+    input {
+        display: inline-block;
+        width: 250px;
+        margin: 5px 0 5px 20px;
+    }
+    
+    input[type="checkbox"] {
+        width: 20px;
+    }
+    
+    .area-label {
+        vertical-align: top;
+    }
+    
+    textarea {
+        display: inline-block;
+        width: 250px;
+        margin: 5px 0 5px 20px;
+    }
+    
     .create-container {
         width: 75%;
         height: 65%;

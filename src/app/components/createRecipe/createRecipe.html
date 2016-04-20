@@ -1,29 +1,38 @@
 <div class="create-form">
+    {{ingredients}}
     <h2>Alright, let's Create a Recipe</h2>
-    <span class="hint">Press [Enter] after each added entry. :)</span>
     <div class="create-container">
-        <h3>{{title}}</h3>
-        <recipe-title *ngIf="currentProcess==='Title'"
-            (addedTitle)="addedTitle($event)">
-        </recipe-title>
-        <recipe-ingredients *ngIf="currentProcess==='Ingredients'"
-            (addedIngredient)="addedIngredient($event)"
-            (triggerNextProcess)="goToNextProcess()"
-            [ingredients]="ingredients">
-        </recipe-ingredients>
-        <recipe-steps *ngIf="currentProcess==='Steps'"
-            (addedStep)="addedStep($event)"
-            [ingredients]="ingredients"
-            [steps]="steps">
-        </recipe-steps>
+        <form>
+            <h4>What is the title of your recipe?</h4>
+            <label>Recipe Title</label>
+            <input class="form-control"
+                ngControl="title"
+                [(ngModel)]="title"
+                type="text" required />
+            <br />
+            <span class="hint">Enter each ingredient on a separate line.</span>
+            <br />
+            <label class="area-label">Ingredients</label>
+            <textarea class="form-control"
+                ngControl="ingredientsString"
+                [(ngModel)]="ingredientsString"
+                type="text" required></textarea>
+            <br />
+            <span class="hint">Enter each step on a separate line.</span>
+            <br />
+            <label class="area-label">Steps</label>
+            <textarea class="form-control"
+                ngControl="stepsString"
+                [(ngModel)]="stepsString"
+                type="text" required></textarea>
+            <br />
+            <input type="checkbox"
+                ngControl="isPrivate"
+                [(ngModel)]="isPrivate" />
+            Make recipe private (Default is public).
+        </form>
     </div>
     <div class="nav-container">
-        <button class="nav-left btn btn-default" (click)="goToPreviousProcess()">
-            Previous
-        </button>
-        <button class="nav-right btn btn-default" *ngIf="processId < allProcesses.length - 1" (click)="saveProcess()">
-            Add {{allProcesses[processId + 1]}}
-        </button>
         <button class="btn btn-default" (click)="saveRecipe()">
             Save Recipe
         </button>
