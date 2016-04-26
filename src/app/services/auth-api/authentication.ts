@@ -25,10 +25,26 @@ export class AuthApi {
 
     registerUser(email: string, password: string) {
         // Return promise to the initial caller
-        // return this.ref.createUser({
-        //     email: email,
-        //     password: password
-        // });
+        this._ref.createUser({
+            email,
+            password
+        }, (error, userData) => {
+            if (error) {
+                this._login.next(false);
+                switch (error.code) {
+                case "EMAIL_TAKEN":
+                    this._error.next("The new user account cannot be created because the email is already in use.");
+                    break;
+                case "INVALID_EMAIL":
+                    this._error.next("The specified email is not a valid email.");
+                    break;
+                default:
+                    this._error.next("Error creating user");
+                }
+            } else {
+                console.log("Successfully created user account with uid:", userData.uid);
+            }
+        });
     }
 
     authenticate(email: string, password: string) {
@@ -46,13 +62,35 @@ export class AuthApi {
     }
     
     externalLogin(client) {
-        this._ref.authWithOAuthPopup(client)
-            .then((authData) => {
-                this._login.next(true);
-            }).catch((error) => {
-               this._login.next(false);
-               this._error.next(error); 
-            });
+        this._ref.authWithOAuthPopup(client, 
+            (error, authData) => {
+                if(error) {
+                    this._login.next(false);
+                    this._error.next(error); 
+                } else if(authData) {
+                    this._ref
+                    .child("users")
+                    .child(authData.uid)
+                    .set({
+                        provider: authData.provider,
+                        name: this.getName(authData)
+                    })
+                    this._login.next(true);
+                }
+         });
+    }
+    
+    getName(authData) {
+        switch(authData.provider) {
+            case 'password':
+                return authData.password.email.replace(/@.*/, '');
+            case 'twitter':
+                return authData.twitter.displayName;
+            case 'facebook':
+                return authData.facebook.displayName;
+            case 'google':
+                return authData.google.displayName;
+        }
     }
     
     logout() {

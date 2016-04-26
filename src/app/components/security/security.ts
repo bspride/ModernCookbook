@@ -73,14 +73,6 @@ class Security implements OnInit {
     // }
 
     onRegister(email, password) {
-        // this._auth.registerUser(email, password)
-        //     .then(() => {
-        //         this.isRegistered = true;
-        //         this.isLoggedIn = true;
-        //     })
-        //     .catch((error) => {
-        //         this.isRegistered = false;
-        //         this.isLoggedIn = false;
-        //     });
+        this._auth.registerUser(email, password);
     }
 }
