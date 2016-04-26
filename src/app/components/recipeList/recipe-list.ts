@@ -2,6 +2,7 @@ import {Component, OnInit, OnDestroy, Inject} from 'angular2/core';
 import {Recipe} from '../../models/recipe';
 import {Api} from '../../services/api/api';
 import {Subscription} from 'rxjs/Subscription';
+import {Router} from 'angular2/router';
 
 @Component({
     selector: 'recipe-list',
@@ -16,7 +17,7 @@ export class RecipeList implements OnInit, OnDestroy{
     public subscription: Subscription;
     
     constructor(
-        private _api: Api
+        private _api: Api, private _router: Router
     ) { }
     
     ngOnInit() {
@@ -27,5 +28,10 @@ export class RecipeList implements OnInit, OnDestroy{
     
     ngOnDestroy() {
         this.subscription.unsubscribe();
+    }
+    
+    addRecipe() {
+        let link=['CreateRecipe'];        
+        this._router.navigate(link);   
     }
 }

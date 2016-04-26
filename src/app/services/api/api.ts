@@ -21,7 +21,8 @@ export class Api {
              let data = snapshot.val();
              observer.next(new Recipe(
                  snapshot.key(),
-                 data.title
+                 data.title,
+                 "http://placekitten.com/180"
              ));
           }, observer.error);
           
