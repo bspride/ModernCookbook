@@ -59,6 +59,12 @@ class Security implements OnInit {
 
         this._auth.authenticate(email, password);
     }
+    
+    loginExternal(client) {
+        let successLink = ['MyRecipe'];
+        
+        this._auth.externalLogin(client);
+    }
 
     // validatePassword(password) {
     //     if(this.validatePassword === password) {

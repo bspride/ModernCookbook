@@ -45,6 +45,16 @@ export class AuthApi {
         });
     }
     
+    externalLogin(client) {
+        this._ref.authWithOAuthPopup(client)
+            .then((authData) => {
+                this._login.next(true);
+            }).catch((error) => {
+               this._login.next(false);
+               this._error.next(error); 
+            });
+    }
+    
     logout() {
         this._ref.unauth();        
         this._login.next(false);

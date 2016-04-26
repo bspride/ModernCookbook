@@ -19,6 +19,12 @@
       <br />
       <button *ngIf="isRegister" type="submit" class="btn btn-default" (click)="onRegister(email.value, password.value)">{{task}}</button>
       <button *ngIf="!isRegister" type="submit" class="btn btn-default" (click)="onSignIn(email.value, password.value); email.value=''; password.value=''">{{task}}</button>
+      <br />
+      <span style="color: black">Login with <button class="btn btn-default" (click)="loginExternal('facebook')">Facebook</button></span>
+      <br />
+      <span style="color: black">Login with <button class="btn btn-default" (click)="loginExternal('twitter')">Twitter</button></span>
+      <br />
+      <span style="color: black">Login with <button class="btn btn-default" (click)="loginExternal('google')">Google</button></span>
   </form>
   <br />
   <span class="error">{{loginError}}</span>
