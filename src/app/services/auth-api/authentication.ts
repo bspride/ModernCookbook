@@ -23,7 +23,7 @@ export class AuthApi {
         this._ref = new Firebase(FIREBASEURL);
     }
 
-    registerUser(email: string, password: string) {
+    registerUser(name: string, email: string, password: string) {
         // Return promise to the initial caller
         this._ref.createUser({
             email,
@@ -42,7 +42,12 @@ export class AuthApi {
                     this._error.next("Error creating user");
                 }
             } else {
-                console.log("Successfully created user account with uid:", userData.uid);
+                this._ref
+                    .child("users")
+                    .push({
+                        name
+                    });
+                this._login.next(true);
             }
         });
     }

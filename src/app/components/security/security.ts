@@ -66,13 +66,8 @@ class Security implements OnInit {
         this._auth.externalLogin(client);
     }
 
-    // validatePassword(password) {
-    //     if(this.validatePassword === password) {
-
-    //     }
-    // }
-
-    onRegister(email, password) {
-        this._auth.registerUser(email, password);
+    onRegister(firstname, lastname, email, password) {
+        let name = firstname + " " + lastname;
+        this._auth.registerUser(name, email, password);
     }
 }
